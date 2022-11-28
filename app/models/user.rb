@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   enum role: { client: 0, admin: 1 }
+  validates :phone, phone: { possible: true, allow_blank: true, types: [:voip, :mobile], countries: :ph }
 end
