@@ -9,13 +9,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-  <body class="mt-5 bg-secondary container" style="font-family: Arial, 'Roboto Light', SansSerif">
-    <div class="container">
-      <div class="d-flex justify-content-center align-content-sm-start">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-    </div>
-    <%= yield %>
+  <body class="bg-secondary" style="font-family: Arial, 'Roboto Light', SansSerif">
+    <%= render 'layouts/header_admin' %>
+    <%= render 'layouts/sidebar' %>
   </body>
 </html>
