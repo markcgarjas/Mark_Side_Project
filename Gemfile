@@ -10,6 +10,7 @@ gem "rails", "~> 7.0.4"
 gem "sprockets-rails"
 gem "devise"
 gem 'phonelib'
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
 
