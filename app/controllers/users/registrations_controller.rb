@@ -15,14 +15,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if @user.update(user_params)
+      # flash[:notice] = "Successfully updated"
+      # sign_in @user, :bypass => true
+      redirect_to me_path
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:phone, :image, :username)
+  end
 
   # DELETE /resource
   # def destroy

@@ -1,0 +1,28 @@
+<%= render 'layouts/header' %>
+<div class="container">
+  <div class="container col-8 fw-bolder">
+    <p class="">
+      <%= image_tag "#{current_user.image.url}",width: "50", height: "50" if current_user.image? %>
+    </p>
+    <p>Username: <%= current_user.username %></p>
+    <p>Email: <%= current_user.email %></p>
+    <p>Coins: <%= current_user.coins %></p>
+
+  </div>
+  <div class="container col-8">
+    <ul class="nav nav-pills nav-justified">
+      <li class="nav-item">
+        <%= link_to "Cash in", "#", class: "btn btn-info bg-warning nav-link" %>
+      </li>
+    </ul>
+    <ul class="nav nav-pills nav-justified mt-3">
+      <li class="nav-item">
+        <%= link_to "Edit", edit_user_registration_path, class: "btn btn-info bg-warning nav-link" %>
+      </li>&nbsp;&nbsp;&nbsp;
+      <li class="nav-item">
+        <%= link_to "Address", "#", class: "btn btn-info bg-warning nav-link" %>
+      </li>
+    </ul>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
