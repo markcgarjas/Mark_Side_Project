@@ -3,5 +3,4 @@ class Address::Region < ApplicationRecord
   validates :name, presence: true
 
   has_many :provinces
-  has_many :districts
 end
