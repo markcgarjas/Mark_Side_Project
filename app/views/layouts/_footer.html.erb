@@ -5,7 +5,7 @@
       <button class="btn btn-outline-success px-4 mx-1" type="submit">Invite</button>
       <button class="btn btn-outline-success px-4 mx-1" type="submit">Lottery</button>
       <button class="btn btn-outline-success px-4 mx-1" type="submit">Shop</button>
-      <%= link_to "Me", me_path, class: "px-4 mx-2 btn btn-info bg-warning" %>
+      <%= link_to "Me", me_path, class: "px-4 mx-2 btn btn-info bg-warning" if current_user %>
     </form>
   </div>
 </nav>

@@ -21,12 +21,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if @user.update(user_params)
-      # flash[:notice] = "Successfully updated"
-      # sign_in @user, :bypass => true
-      redirect_to me_path
+    parameter = params[:user]
+    if parameter[:current_password].present? || parameter[:password].present? || parameter[:password_confirmation].present?
+      update_user_with_password
     else
-      render :edit
+      update_user
     end
   end
 
@@ -34,6 +33,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:phone, :image, :username)
+  end
+
+  def user_with_password_params
+    params.require(:user).permit(:phone, :image, :username, :current_password, :password_confirmation, :password)
+  end
+
+  def update_user_with_password
+    if @user.update_with_password(user_with_password_params)
+      flash[:notice] = "Updated password! Login Again!"
+      redirect_to new_user_session_path
+    else
+      render :edit
+    end
+  end
+
+  def update_user
+    if @user.update(user_params)
+      flash[:notice] = "Updated profile"
+      redirect_to me_path
+    else
+      render :edit
+    end
   end
 
   # DELETE /resource

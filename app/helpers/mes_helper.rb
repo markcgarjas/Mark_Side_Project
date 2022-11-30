@@ -1,2 +1,2 @@
-module MeHelper
+module MesHelper
 end
