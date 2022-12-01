@@ -8,6 +8,9 @@
           <% end %>
         </ul>
       <% end %>
+      <%= form.text_field :name %>
+      <%= form.text_field :phone %>
+      <%= form.text_field :street %>
       <%= form.collection_select :address_region_id,
                                  Address::Region.all, :id, :name,
                                  { prompt: 'SELECT REGION' },

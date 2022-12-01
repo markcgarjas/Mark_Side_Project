@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_30_073848) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_01_080443) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -52,6 +52,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_073848) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "region_name"
+  end
+
+  create_table "addresses", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "genre"
+    t.string "name"
+    t.string "street"
+    t.string "phone"
+    t.string "remark"
+    t.boolean "is_default"
+    t.bigint "user_id"
+    t.bigint "address_region_id"
+    t.bigint "address_province_id"
+    t.bigint "address_city_municipality_id"
+    t.bigint "address_barangay_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_barangay_id"], name: "index_addresses_on_address_barangay_id"
+    t.index ["address_city_municipality_id"], name: "index_addresses_on_address_city_municipality_id"
+    t.index ["address_province_id"], name: "index_addresses_on_address_province_id"
+    t.index ["address_region_id"], name: "index_addresses_on_address_region_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
