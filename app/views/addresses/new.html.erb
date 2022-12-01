@@ -1,0 +1,27 @@
+<%= form_with model: @address, url: me_addresses_path, data: { turbo: false } do |form| %>
+  <div data-controller='location'>
+    <div>
+      <% if @address.errors.any? %>
+        <ul>
+          <% @address.errors.each do |error| %>
+            <ol><%= error.full_message %></ol>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form.collection_select :address_region_id,
+                                 Address::Region.all, :id, :name,
+                                 { prompt: 'SELECT REGION' },
+                                 data: { action: 'change->location#fetchProvinces', location_target: 'selectRegionId' }, class: 'form-control mt-1 mb-1' %>
+    </div>
+    <div>
+      <%= form.collection_select :address_province_id, [], nil, nil, { prompt: 'SELECT PROVINCE/DISTRICT' }, data: { action: 'change->location#fetchCityMunicipalities', location_target: 'selectProvinceId' }, class: 'form-control mt-1 mb-1' %>
+    </div>
+    <div>
+      <%= form.collection_select :address_city_municipality_id, [], nil, nil, { prompt: 'SELECT MUNICIPALITY' }, data: { action: 'change->location#fetchBarangays', location_target: 'selectCityMunicipalityId' }, class: 'form-control mt-1 mb-1' %>
+    </div>
+    <div>
+      <%= form.collection_select :address_barangay_id, [], nil, nil, { prompt: 'SELECT BARANGAY' }, data: { location_target: 'selectBarangayId' }, class: 'form-control mt-1 mb-1' %>
+    </div>
+  </div>
+  <%= form.submit %>
+<% end %>
