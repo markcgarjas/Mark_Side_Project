@@ -1,53 +1,31 @@
 <%= render 'layouts/header' %>
-<div class="container">
-  <div class="container col-12 fw-bolder">
-    <div class="d-flex justify-content-center align-content-lg-center ">
-      <div class="col-10 col-md-8 col-lg-6 col-xl-6">
-        <div class="card">
-          <div class="card-body">
-            <p class="">
-              <%= image_tag "#{current_user.image.url}", width: "100", height: "100" if current_user.image? %>
-            </p>
-            <p>Username: <%= current_user.username %></p>
-            <p>Email: <%= current_user.email %></p>
-            <p>Coins: <%= current_user.coins %></p>
-            <div class="container col-8">
-              <ul class="nav nav-pills nav-justified">
-                <li class="nav-item">
-                  <%= link_to "Cash in", "#", class: "btn btn-info bg-warning nav-link" %>
-                </li>
-              </ul>
-              <ul class="nav nav-pills nav-justified mt-3">
-                <li class="nav-item">
-                  <%= link_to "Edit", edit_user_registration_path, class: "btn btn-info bg-warning nav-link" %>
-                </li>&nbsp;&nbsp;&nbsp;
-                <li class="nav-item">
-                  <%= link_to "Address", me_addresses_path, class: "btn btn-info bg-warning nav-link" %>
-                </li>
-              </ul>
-            </div>
-          </div>
+<div class="d-flex justify-content-center align-content-center">
+  <div class="col-md-12 col-lg-8 col-lg-8 col-xl-11">
+    <div class="card">
+      <div class="card-body">
+        <p class="text-center">
+          <%= image_tag "#{current_user.image.url}", width: "100", height: "100" if current_user.image? %>
+        </p>
+        <p>Username: <%= current_user.username %></p>
+        <p>Email: <%= current_user.email %></p>
+        <p>Coins: <%= current_user.coins %></p>
+        <div class="container col-8">
+          <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+              <%= link_to "Cash in", "#", class: "btn text-white bg-dark nav-link" %>
+            </li>
+          </ul>
+          <ul class="nav nav-pills nav-justified mt-3">
+            <li class="nav-item">
+              <%= link_to "Edit", edit_user_registration_path, class: "btn text-dark  bg-warning nav-link" %>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+              <%= link_to "Address", me_addresses_path, class: "btn text-white bg-primary nav-link" %>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-  <div class="container col-8">
-    <ul class="nav nav-pills nav-justified">
-      <li class="nav-item">
-        <%= link_to "Cash in", "#", class: "btn btn-info bg-warning nav-link" %>
-      </li>
-    </ul>
-    <ul class="nav nav-pills nav-justified mt-3">
-      <li class="nav-item">
-        <%= link_to "Edit", edit_user_registration_path, class: "btn btn-info bg-warning nav-link" %>
-      </li>&nbsp;&nbsp;&nbsp;
-      <li class="nav-item">
-        <%= link_to "Address", address_regions_path, class: "btn btn-info bg-warning nav-link" %>
-      </li>
-    </ul>
-  </div>
 </div>
-=======
->>>>>>> 96cd871 ([Feature 4] Update user can change password)
 <%= render 'layouts/footer' %>

@@ -1,5 +1,6 @@
 <%= render "layouts/header" %>
 <section class="bg-secondary">
+  <%= render "users/shared/error_messages", resource: resource %>
   <div class="container mt-lg-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-10 col-md-8 col-lg-6 col-xl-6">
@@ -15,7 +16,7 @@
                     <%= link_to "Register", new_user_registration_path, class: " bg-warning nav-link active" %>
                   </li>
                 </ul>
-                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
                   <div class="form-floating mt-3">
                     <%= f.text_field :username, class: "form-control", id: "floatingInput", placeholder: "Username" %>
                     <br>
@@ -27,14 +28,12 @@
                     <%= f.label :email, for: "floatingInput" %>
                   </div>
                   <div class="form-floating">
-                    <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: "floatingInput", placeholder: "Password" %>
+                    <%= f.password_field :password, class: "form-control", id: "floatingInput", placeholder: "Password" %>
                     <br>
                     <%= f.label :password, for: "floatingInput" %>
-                    <% if @minimum_password_length %>
-                    <% end %>
                   </div>
                   <div class="form-floating">
-                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "floatingInput", placeholder: "Password" %>
+                    <%= f.password_field :password_confirmation, class: "form-control", id: "floatingInput", placeholder: "Password" %>
                     <br>
                     <%= f.label :password_confirmation, for: "floatingInput" %>
                   </div>

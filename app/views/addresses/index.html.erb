@@ -1,41 +1,40 @@
 <%= render 'layouts/header' %>
-<div class="container">
-  <div class="fw-bolder">
-    <div class="d-flex justify-content-center align-content-lg-center ">
-      <div class="col-12 col-md-10 col-lg-8 col-xl-8">
-        <%= link_to "New Address", new_me_address_path, class: 'btn btn-info btn-outline-primary me-2'%>
-        <h3 class="text-center">Addresses</h3><br>
-        <div class="card">
-          <div class="card-body">
-            <table class="table table-hover">
-              <thead>
-              <tr>
-                <td>Name</td>
-                <td>Address</td>
-                <td>Phone Number</td>
-                <td>Postal Code</td>
-                <td>Genre</td>
-                <td>Default Address</td>
-                <td>Update</td>
-              </tr>
-              </thead>
-              <% @addresses.each do |address| %>
-                <tbody>
-                <tr>
-                  <td><%= "#{address.name}" %></td>
-                  <td><%= "#{address.street}" %></td>
-                  <td><%= "#{address.phone}" %></td>
-                  <td><%= "#{address.region&.name} #{address.province&.name}, #{address.city_municipality&.name}, #{address.barangay&.name}" %></td>
-                  <td><%= "#{address.genre}" %></td>
-                  <td><%= "#{address.is_default?}" %></td>
-                  <td><%= link_to "Edit", edit_me_address_path(address), class: 'btn btn-outline-info me-2' %></td>
-                  <td><%= button_to "Delete", me_address_path(address), class: 'btn btn-outline-danger me-2', onclick: "return confirm('Are you sure you want to delete?')", method: :delete %></td>
-                </tbody>
-                </tr>
-              <% end %>
-            </table>
-          </div>
-        </div>
+<div class="d-flex justify-content-center align-content-center">
+  <div class="col-md-12 col-lg-8 col-lg-8 col-xl-11">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center">Addresses</h2>
+        <%= link_to "New Address", new_me_address_path, class: 'btn btn-primary text-white btn-outline-info mb-2' %>
+        <hr>
+        <table class="table table-hover text-center justify-content-center align-content-center">
+          <thead>
+          <tr>
+            <td>Name</td>
+            <td>Genre</td>
+            <td>Address</td>
+            <td>Phone Number</td>
+            <td>Postal Code</td>
+            <td></td>
+            <td>Update</td>
+          </tr>
+          </thead>
+          <% @addresses.each do |address| %>
+            <tbody>
+            <tr>
+              <td><%= "#{address.name}" %></td>
+              <td>
+                <%= content_tag :is_default, "Default Address", class: 'text-dark badge' if address.is_default %>
+                <%= content_tag :genre, "#{address.genre}", class: ' text-dark badge' %>
+              </td>
+              <td><%= "#{address.street}" %></td>
+              <td><%= "#{address.phone}" %></td>
+              <td><%= "#{address.region&.name} #{address.province&.name}, #{address.city_municipality&.name}, #{address.barangay&.name}" %></td>
+              <td><%= link_to "Edit", edit_me_address_path(address), class: 'btn text-dark btn-outline-info me-2' %></td>
+              <td><%= button_to "Delete", me_address_path(address), class: 'btn text-dark btn-outline-danger me-2', onclick: "return confirm('Are you sure you want to delete?')", method: :delete %></td>
+            </tbody>
+            </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
