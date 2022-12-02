@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     root to: 'homes#index'
     devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
     resources :homes
-    resource :me
+    resource :me do
+      resources :addresses
+    end
   end
 
   constraints(AdminDomainConstraint.new) do

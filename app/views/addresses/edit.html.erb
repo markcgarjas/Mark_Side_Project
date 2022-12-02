@@ -1,5 +1,5 @@
 <%= render 'layouts/header' %>
-<%= form_with model: @address, url: me_addresses_path, data: { turbo: false } do |form| %>
+<%= form_with model: @address, url: me_address_path(@address), data: { turbo: false } do |form| %>
   <div data-controller='location'>
     <div class="d-flex justify-content-center align-content-center">
       <% if @address.errors.any? %>
@@ -9,8 +9,6 @@
           <% end %>
         </ul>
       <% end %>
-    </div>
-    <div class="d-flex justify-content-center align-content-center">
       <div class="card" style="width: 60rem;">
         <div class="card-body">
           <h2 class="text-center">Add Address</h2>
