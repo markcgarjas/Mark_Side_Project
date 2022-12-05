@@ -1,0 +1,2 @@
+module Users::InvitePeoplesHelper
+end

@@ -17,10 +17,10 @@
                   </li>
                 </ul>
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
-                  <div class="form-floating mt-3">
-                    <%= f.text_field :username, class: "form-control", id: "floatingInput", placeholder: "Username" %>
+                  <div class="form-floating">
+                    <%= f.email_field :parent, class: "form-control", id: "floatingInput", placeholder: "name@example.com", value: cookies[:promoter], readonly: true %>
                     <br>
-                    <%= f.label :Promoter_Name, for: "floatingInput" %>
+                    <%= f.label :Promoter, for: "floatingInput" %>
                   </div>
                   <div class="form-floating">
                     <%= f.email_field :email, class: "form-control", id: "floatingInput", placeholder: "name@example.com" %>

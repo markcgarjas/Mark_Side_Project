@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resource :me do
       resources :addresses
     end
+    namespace :users, path: '' do
+      resources :invite_peoples, only: :index
+    end
   end
 
   constraints(AdminDomainConstraint.new) do
