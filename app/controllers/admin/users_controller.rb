@@ -2,7 +2,7 @@ class Admin::UsersController < AdminController
   before_action :check_admin
 
   def index
-    @users = User.all
+    @users = User.where(role: 0)
   end
 
   def check_admin
