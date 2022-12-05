@@ -12,6 +12,8 @@ class Address < ApplicationRecord
   validates :phone, phone: { possible: true, allow_blank: true, types: [:voip, :mobile], countries: :ph }, length: { maximum: 13 }
   enum genre: { Home: 0, Office: 1 }
   after_save :only_one_default_address
+  before_create :default_address_when_empty
+
   private
 
   def address_limit
@@ -23,6 +25,14 @@ class Address < ApplicationRecord
   def only_one_default_address
     if is_default
       user.addresses.where('id != ?', id).update_all(is_default: false)
+    end
+  end
+
+  def default_address_when_empty
+    if user.addresses.empty?
+      self.is_default = true
+        else
+      self.is_default = false
     end
   end
 end
