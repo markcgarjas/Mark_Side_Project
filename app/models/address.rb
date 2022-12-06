@@ -9,6 +9,7 @@ class Address < ApplicationRecord
   validate :address_limit, on: :create
   validates :genre, presence: true
   validates :name, presence: true
+  validates :street, presence: true
   validates :phone, phone: { possible: true, allow_blank: true, types: [:voip, :mobile], countries: :ph }, length: { maximum: 13 }
   enum genre: { Home: 0, Office: 1 }
   after_save :only_one_default_address
@@ -31,7 +32,7 @@ class Address < ApplicationRecord
   def default_address_when_empty
     if user.addresses.empty?
       self.is_default = true
-        else
+    else
       self.is_default = false
     end
   end
