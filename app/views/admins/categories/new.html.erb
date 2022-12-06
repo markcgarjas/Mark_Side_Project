@@ -1,0 +1,15 @@
+<%= render 'layouts/admins/error_message', resource: @category %>
+<div class="d-flex justify-content-center align-content-center">
+  <div class="col-auto">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-center">Add Category</h3>
+        <%= form_with model: @category, url: admins_categories_path, data: { turbo: false } do |form| %>
+          <%= form.label :name, class: 'form-label' %><br>
+          <%= form.text_field :name, class: 'form-control' %><br>
+          <%= form.submit class: 'btn btn-primary mx-1' %><%= link_to "Back", new_admins_item_path, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

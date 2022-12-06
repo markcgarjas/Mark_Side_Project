@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       devise_for :users, controllers: { sessions: 'admins/sessions' }
       resources :users, index: :only
       resources :items
+      resources :categories
     end
   end
 

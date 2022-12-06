@@ -8,6 +8,8 @@ class Item < ApplicationRecord
   # validates :offline_at, presence: true, allow_blank: true
   validates :start_at, presence: true
   validates :status, presence: true
+  has_many :item_category_ships, dependent: :restrict_with_error
+  has_many :categories, through: :item_category_ships
 
   mount_uploader :image, ImageUploader
 

@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-center align-content-center">
+  <div class="col-auto">
+    <div class="card">
+      <div class="card-body">
+        <%= %>
+        <h3>Categories</h3>
+        <%= link_to 'New Category', new_admins_category_path, class: 'btn btn-primary mx-2' %><%= link_to "Back", new_admins_item_path, class: 'btn btn-primary' %>
+        <hr>
+        <% @categories.each do |category| %>
+          <p class="text-center"><%= category.name %></p>
+          <div class="d-flex justify-content-center align-content-center">
+            <%= link_to "Edit", edit_admins_category_path(category), class: 'btn btn-primary mx-2' %> <%= button_to "Delete", admins_category_path(category), { onclick: "return confirm('Are you sure you want to delete?')", method: :delete, class: "btn btn-danger" } %>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
