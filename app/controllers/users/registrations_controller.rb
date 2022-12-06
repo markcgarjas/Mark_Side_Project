@@ -56,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_user
     if @user.update(user_params)
       flash[:notice] = "Updated profile"
-      redirect_to me_path
+      redirect_to users_profile_path
     else
       render :edit
     end
@@ -89,7 +89,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :parent_id, :childer_members])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :parent_id])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

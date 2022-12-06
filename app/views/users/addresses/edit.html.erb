@@ -1,0 +1,64 @@
+<%= render 'layouts/users/header' %>
+<%= render "users/shared/error_messages", resource: @address %>
+<div class="d-flex justify-content-center align-content-center">
+  <div class="col-md-12 col-lg-8 col-lg-8 col-xl-11">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center">Edit Address</h2>
+        <div data-controller='location'>
+          <%= form_with model: @address, url: users_profile_address_path(@address), data: { turbo: false } do |form| %>
+            <div class="row d-flex justify-content-center align-content-center">
+              <div class="col-md-6 col-lg-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <%= form.label :name, class: 'form-label mt-1 mb-1' %>
+                  <%= form.text_field :name, class: 'form-control mt-1 mb-1', placeholder: "Name" %>
+                  <%= form.label :phone, class: 'form-label mt-1 mb-1' %>
+                  <%= form.text_field :phone, class: 'form-control mt-1 mb-1', placeholder: "Phone" %>
+                  <%= form.label :genre, class: 'form-label mt-1 mb-1' %>
+                  <%= form.select :genre, options_for_select(Address.genres.map { |key, value| [key.humanize, key] }), { prompt: "Select Genre" }, class: 'form-control mt-1 mb-1' %>
+                  <%= form.label :street, class: 'form-label mt-1 mb-1' %>
+                  <%= form.text_field :street, class: 'form-control mt-1 mb-1', placeholder: "Street" %>
+                  <%= form.label :remarks, class: 'form-label mt-1 mb-1' %>
+                  <%= form.text_field :remark, class: 'form-control mt-1 mb-1', placeholder: "Receiver" %>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <%= form.label :Region, class: 'form-label mt-1 mb-1' %>
+                  <%= form.collection_select :address_region_id,
+                                             Address::Region.all, :id, :name,
+                                             { prompt: 'SELECT REGION' },
+                                             data: { action: 'change->location#fetchProvinces', location_target: 'selectRegionId' }, include_blank: true, class: 'form-control mt-1 mb-1' %>
+                </div>
+                <div class="form-group">
+                  <%= form.label "Province/District", class: 'form-label mt-1 mb-1' %>
+
+                  <%= form.collection_select :address_province_id, [], nil, nil, { prompt: 'SELECT PROVINCE/DISTRICT' }, include_blank: true, data: { action: 'change->location#fetchCityMunicipalities', location_target: 'selectProvinceId' }, class: 'form-control mt-1 mb-1' %>
+                </div>
+                <div class="form-group">
+                  <%= form.label :City_Municipality, class: 'form-label mt-1 mb-1' %>
+                  <%= form.collection_select :address_city_municipality_id, [], nil, nil, { prompt: 'SELECT MUNICIPALITY' }, include_blank: true, data: { action: 'change->location#fetchBarangays', location_target: 'selectCityMunicipalityId' }, class: 'form-control mt-1 mb-1' %>
+                </div>
+                <div class="form-group">
+                  <%= form.label :Barangay, class: 'form-label mt-1 mb-1' %>
+                  <%= form.collection_select :address_barangay_id, [], nil, nil, { prompt: 'SELECT BARANGAY' }, include_blank: true, data: { location_target: 'selectBarangayId' }, class: 'form-control mt-1 mb-1' %>
+                </div>
+                <div class="form-check">
+                  <%= form.check_box :is_default, class: 'form-check-input' %>
+                  <label class="form-check-label" for="defaultCheck1">
+                    Default Address?
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= form.submit "Submit Address", class: 'btn btn-outline-info text-white btn-primary mt-1' %>
+                <%= link_to "Back", users_profile_addresses_path, class: 'btn btn-outline-info text-white btn-primary mt-1' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/users/footer' %>

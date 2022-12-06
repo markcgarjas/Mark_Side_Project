@@ -1,0 +1,11 @@
+<nav class="navbar navbar-light bg-light fixed-bottom">
+  <div class="container d-flex justify-content-center align-content-center">
+    <form class="d-flex p-1">
+      <button class="btn btn-outline-success px-4 mx-1 " type="submit">Share</button>
+      <%= link_to "Invite", users_invite_people_path, class: "px-4 mx-2 btn btn-info bg-warning" %>
+      <button class="btn btn-outline-success px-4 mx-1" type="submit">Lottery</button>
+      <button class="btn btn-outline-success px-4 mx-1" type="submit">Shop</button>
+      <%= link_to "Me", users_profile_path, class: "px-4 mx-2 btn btn-info bg-warning" if current_user %>
+    </form>
+  </div>
+</nav>

@@ -1,4 +1,4 @@
-<%= render 'layouts/header' %>
+<%= render 'layouts/users/header' %>
 <h1>Hi!</h1>
 
 <% if user_signed_in? %>
@@ -6,4 +6,4 @@
 <% else %>
   <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
 <% end %>
-<%= render 'layouts/footer' %>
+<%= render 'layouts/users/footer' %>

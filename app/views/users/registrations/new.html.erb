@@ -1,6 +1,6 @@
-<%= render "layouts/header" %>
+<%= render "layouts/users/header" %>
+<%= render "users/shared/error_messages", resource: resource %>
 <section class="bg-secondary">
-  <%= render "users/shared/error_messages", resource: resource %>
   <div class="container mt-lg-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-10 col-md-8 col-lg-6 col-xl-6">
@@ -49,4 +49,4 @@
     </div>
   </div>
 </section>
-<%= render "layouts/footer" %>
+<%= render "layouts/users/footer" %>

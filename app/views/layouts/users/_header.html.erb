@@ -1,0 +1,22 @@
+<nav class="navbar navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand">Brand Image</a>
+    <form class="d-flex p-1">
+      <button class="btn btn-outline-success mx-1 " type="submit">Coins</button>
+      <button class="btn btn-outline-success mx-1" type="submit">Claim</button>
+      <button class="btn btn-outline-success mx-1" type="submit">Language</button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          =
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <% if user_signed_in? %>
+            <%= button_to "Log Out", destroy_user_session_path, { onclick: "return confirm('Are you sure you want to delete?')", method: :delete, class: "dropdown-item" } %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
+          <% end %>
+        </ul>
+      </div>
+    </form>
+  </div>
+</nav>

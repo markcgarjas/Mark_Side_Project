@@ -5,23 +5,24 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   constraints(ClientDomainConstraint.new) do
-    root to: 'homes#index'
+
     devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
-    resources :homes
-    resource :me do
-      resources :addresses
-    end
     namespace :users, path: '' do
-      resources :invite_peoples, only: :index
+      root "homes#index"
+      resource :home
+      resource :profile, show: :only do
+        resources :addresses
+      end
+      resources :invite_people, only: :index
     end
   end
 
   constraints(AdminDomainConstraint.new) do
-    namespace :admin, path: '' do
-      root to: 'home#index'
-      devise_for :users, controllers: { sessions: 'admins/sessions' }
-      resources :users
+    namespace :admins, path: '' do
+      root "home#index"
       resources :home
+      devise_for :users, controllers: { sessions: 'admins/sessions' }
+      resources :users, index: :only
       resources :items
     end
   end

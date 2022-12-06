@@ -1,0 +1,13 @@
+<%= render 'layouts/users/header' %>
+<%= render "users/shared/error_messages", resource: @address %>
+<div class="d-flex justify-content-center align-content-center">
+  <div class="col-md-12 col-lg-8 col-lg-8 col-xl-11">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center">Add Address</h2>
+        <%= render partial: 'form', locals: { address: @address, path: users_profile_addresses_path } %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/users/footer' %>
