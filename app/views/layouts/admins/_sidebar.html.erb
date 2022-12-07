@@ -16,8 +16,9 @@
             </button>
             <div class="collapse" id="dashboard-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-dark rounded">User List</a></li>
-                <li><a href="#" class="link-dark rounded">Item List</a></li>
+                <li><%= link_to "User List",admins_users_path %></li>
+                <li><%= link_to "Item List",admins_items_path %></li>
+                <li><%= link_to "Category List",admins_categories_path %></li>
               </ul>
             </div>
           </li>
