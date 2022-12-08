@@ -24,7 +24,12 @@ Rails.application.routes.draw do
       resources :home
       devise_for :users, controllers: { sessions: 'admins/sessions' }
       resources :users, index: :only
-      resources :items
+      resources :items do
+        put 'start_event', to: 'items#start_event'
+        put 'end_event', to: 'items#end_event'
+        put 'cancel_event', to: 'items#cancel_event'
+        put 'pause_event', to: 'items#pause_event'
+      end
       resources :categories
     end
   end

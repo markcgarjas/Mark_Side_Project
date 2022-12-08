@@ -10,7 +10,7 @@
         <div class="d-flex justify-content-center align-content-center">
           <table class="table-hover table-responsive text-center">
             <th>
-              <tr class="bg-dark text-white ">
+              <tr class="bg-dark text-white table-responsive-sm">
                 <td>Image</td>
                 <td>Name</td>
                 <td>Quantity</td>
@@ -22,7 +22,7 @@
                 <td>Start At</td>
                 <td>Status</td>
                 <td>Categories</td>
-                <td colspan="2">Action</td>
+                <td colspan="6">Action</td>
               </tr>
             </th>
             <% @items.each do |item| %>
@@ -41,6 +41,18 @@
                 <td><%= item.categories.pluck(:name).join(', ') %></td>
                 <td><%= button_to 'Delete', admins_item_path(item), class: 'btn btn-outline-danger me-2', onclick: "return confirm('Are you sure you want to delete?')", method: :delete %></td>
                 <td><%= link_to 'Show', admins_item_path(item), class: 'btn btn-outline-danger me-2' %></td>
+                <% if item.may_start? %>
+                  <td><%= button_to "Start", admins_item_start_event_path(item), method: :put, class: 'btn btn-primary'%></td>
+                <% end %>
+                <% if item.may_pause? %>
+                  <td><%= button_to "Pause", admins_item_pause_event_path(item), method: :put, class: 'btn btn-primary' %></td>
+                <% end %>
+                <% if item.may_end? %>
+                  <td><%= button_to "End", admins_item_end_event_path(item), method: :put, class: 'btn btn-primary' %></td>
+                <% end %>
+                <% if item.may_cancel? %>
+                  <td><%= button_to "Cancel", admins_item_cancel_event_path(item), method: :put, class: 'btn btn-primary' %></td>
+                <% end %>
               </tr>
               </tbody>
             <% end %>
