@@ -38,7 +38,7 @@
             <%= f.select :status, options_for_select(Item.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
           </div>
           <div class="form-check-outline mt-2">
-            <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, class: 'form-check-input', for: 'defaultCheck1' %>
+            <%= f.collection_check_boxes :category_id, Category.all, :id, :name, class: 'form-check-input', for: 'defaultCheck1' %>
             <%= link_to 'Add Category', new_admins_category_path(@item), class: 'btn btn-primary' %>
           </div>
           <hr>
