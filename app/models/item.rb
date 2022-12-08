@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :minimum_bets, presence: true
   validates :online_at, presence: true
-  # validates :offline_at, presence: true, allow_blank: true
+  validates :offline_at, presence: true
   validates :start_at, presence: true
   validates :status, presence: true
   has_many :item_category_ships, dependent: :restrict_with_error
@@ -64,6 +64,6 @@ class Item < ApplicationRecord
   end
 
   def status_is_active?
-    self.status == 1
+    self.status == "active"
   end
 end
