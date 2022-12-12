@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-center align-content-center">
   <% if resource.errors.any? %>
-    <% resource.errors.full_messages.each do |message| %>
-      <%= content_tag :alert, message, class: 'badge alert alert-primary mx-1' %>
+    <%= content_tag :alert, class: 'badge alert alert-primary mx-1' do %>
+      <% resource.errors.full_messages.each do |message| %>
+        <%= message %>.
+      <% end %>
     <% end %>
   <% end %>
 </div>

@@ -1,31 +1,35 @@
-<%= render 'layouts/users/header' %>
-<div class="d-flex justify-content-center align-content-center">
-  <div class="col-md-12 col-lg-8 col-lg-8 col-xl-11">
-    <div class="card">
-      <div class="card-body">
-        <p class="text-center">
-          <%= image_tag "#{current_user.image.url}", width: "100", height: "100" if current_user.image? %>
-        </p>
-        <p>Username: <%= current_user.username %></p>
-        <p>Email: <%= current_user.email %></p>
-        <p>Coins: <%= current_user.coins %></p>
-        <div class="container col-8">
-          <ul class="nav nav-pills nav-justified">
-            <li class="nav-item">
-              <%= link_to "Cash in", "#", class: "btn text-white bg-dark nav-link" %>
-            </li>
-          </ul>
-          <ul class="nav nav-pills nav-justified mt-3">
-            <li class="nav-item">
-              <%= link_to "Edit", edit_user_registration_path, class: "btn text-dark  bg-warning nav-link" %>
-            </li>&nbsp;&nbsp;&nbsp;
-            <li class="nav-item">
-              <%= link_to "Address", users_profile_addresses_path, class: "btn text-white bg-primary nav-link" %>
-            </li>
-          </ul>
+<h1 class="text-center text-white">My Profile</h1>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <p class="text-center">
+              <%= image_tag "#{current_user.image.url}", width: "100", height: "100" if current_user.image? %>
+            </p>
+            <p>Username: <%= current_user.username %></p>
+            <p>Email: <%= current_user.email %></p>
+            <p>Coins: <%= current_user.coins %></p>
+            <div class="container col-8">
+              <ul class="nav nav-pills nav-justified">
+                <li class="nav-item">
+                  <%= link_to "Cash in", "#", class: "btn text-white bg-dark nav-link" %>
+                </li>
+              </ul>
+              <ul class="nav nav-pills nav-justified mt-3">
+                <li class="nav-item">
+                  <%= link_to "Edit", edit_user_registration_path, class: "btn text-dark bg-warning nav-link" %>
+                </li>&nbsp;&nbsp;&nbsp;
+                <li class="nav-item">
+                  <%= link_to "Address", users_profile_addresses_path, class: "btn bg-warning text-dark nav-link" %>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 <%= render 'layouts/users/footer_profile' %>

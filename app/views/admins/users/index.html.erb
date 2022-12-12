@@ -1,39 +1,41 @@
-<div class="d-flex justify-content-center align-content-center">
-  <div class="col-auto">
-    <div class="card">
-      <div class="card-body">
-        <h1 class="text-center">Users</h1>
-        <table class="table table-responsive-sm table-hover table-bordered">
-          <thead>
-          <tr class="bg-info">
-            <th>Parent Email</th>
-            <th>Email</th>
-            <th>Total Deposit</th>
-            <th>Member Total Deposits</th>
-            <th>Coins</th>
-            <th>Total Used Coins</th>
-            <th>Children Members</th>
-            <th>Phone</th>
-          </tr>
-          </thead>
-          <% @users.each do |user| %>
-            <tbody>
-            <tr>
-              <td><%= user.parent&.email %></td>
-              <td><%= user.email %></td>
-              <td><%= user.total_deposit %></td>
-              <td>
-                <% "#" %></td>
-              <td><%= user.coins %></td>
-              <td>
-                <% "#" %></td>
-              <td><%= user.childer_members %></td>
-              <td><%= user.phone %></td>
+<h1 class="text-center">Users</h1>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div style="overflow: auto;">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+          <table class="table table-responsive">
+            <thead>
+            <tr class="bg-dark text-light">
+              <th>Parent Email</th>
+              <th>Email</th>
+              <th>Total Deposit</th>
+              <th>Member Total Deposits</th>
+              <th>Coins</th>
+              <th>Total Used Coins</th>
+              <th>Children Members</th>
+              <th>Phone</th>
             </tr>
-            </tbody>
-          <% end %>
-        </table>
+            </thead>
+            <% @users.each do |user| %>
+              <tbody>
+              <tr>
+                <td><%= user.parent&.email %></td>
+                <td><%= user.email %></td>
+                <td><%= user.total_deposit %></td>
+                <td>
+                  <% "#" %></td>
+                <td><%= user.coins %></td>
+                <td>
+                  <% "#" %></td>
+                <td><%= user.childer_members %></td>
+                <td><%= user.phone %></td>
+              </tr>
+              </tbody>
+            <% end %>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

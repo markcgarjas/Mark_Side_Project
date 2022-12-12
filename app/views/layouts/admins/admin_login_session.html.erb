@@ -10,7 +10,8 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body class="" style="font-family: Arial, 'Roboto Light', SansSerif">
-    <%= render 'layouts/admins/header' %>
-    <%= render 'layouts/admins/sidebar' %>
+    <div class="mt-5">
+    <%= yield %>
+    </div>
   </body>
 </html>

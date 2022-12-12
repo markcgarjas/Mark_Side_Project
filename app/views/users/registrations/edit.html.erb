@@ -1,55 +1,57 @@
-<%= render 'layouts/users/header' %>
 <%= render "users/shared/error_messages", resource: resource %>
-<div class="d-flex justify-content-center align-content-center">
-  <div class="col-md-12 col-lg-8 col-lg-8 col-xl-11">
-    <div class="card">
-      <div class="card-body">
-        <%= form_for(resource, as: resource_name, url: user_registration_path, data: { turbo: false }) do |f| %>
-          <h2 class="text-center">Edit Profile</h2>
-          <hr>
-          <div class="row d-flex justify-content-center align-content-center">
-            <div class="col-md-6 col-lg-6 col-lg-6 col-xl-6">
-              <div class="form-floating mt-3 text-center">
-                <strong><%= f.label "add/Update Profile Picture", class: 'mb-3' %>
-                  <%= f.file_field :image, class: 'form-control' %></strong>
-              </div>
-              <div class="form-floating mt-3">
-                <%= f.text_field :username, class: "form-control", id: "floatingInput", placeholder: "Username" %>
-                <br/>
-                <%= f.label :username, for: "floatingInput" %>
-              </div>
-              <div class="form-floating mt-3">
-                <%= f.text_field :phone, class: "form-control", id: "floatingInput", placeholder: "+639....", maxlength: 13 %>
-                <br/>
-                <%= f.label :phone, for: "floatingInput" %>
-              </div>
-            </div>
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<h1 class="text-center text-white">Edit Profile</h1>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <%= form_for(resource, as: resource_name, url: user_registration_path, data: { turbo: false }) do |f| %>
+              <div class="row d-flex justify-content-center align-content-center">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 border">
+                  <div class="form-floating text-center">
+                    <strong><%= f.label "add/Update Profile Picture", class: 'mb-3' %>
+                      <%= f.file_field :image, class: 'form-control' %></strong>
+                  </div>
+                  <div class="form-floating mt-3">
+                    <%= f.text_field :username, class: "form-control", id: "floatingInput", placeholder: "Username" %>
+                    <br/>
+                    <%= f.label :username, for: "floatingInput" %>
+                  </div>
+                  <div class="form-floating mt-3">
+                    <%= f.text_field :phone, class: "form-control", id: "floatingInput", placeholder: "+639....", maxlength: 13 %>
+                    <br/>
+                    <%= f.label :phone, for: "floatingInput" %>
+                  </div>
+                </div>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 border">
+                  <div class="form-floating text-center">
+                    <strong><%= f.label "Change Password?", class: 'mb-3' %></strong>
+                    <div class="form-floating">
+                      <%= f.password_field :current_password, id: "floatingInput", class: 'form-control', placeholder: 'Current Password' %>
+                      <br/>
+                      <%= f.label "Current_password (We need your current password to confirm your changes)", for: "floatingInput" %>
+                    </div>
+                    <div class="form-floating mt-3">
+                      <%= f.password_field :password, class: 'form-control', id: "floatingInput", placeholder: "New Password" %>
+                      <br>
+                      <%= f.label "New Password (Minimum of 6 characters minimum}" %>
+                    </div>
+                    <div class="form-floating mt-3">
+                      <%= f.password_field :password_confirmation, class: 'form-control', id: "floatingInput", placeholder: "Password Confirmation" %>
+                      <%= f.label "New Password Confirmation" %><br/>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-3">
+                  <%= f.submit class: 'btn btn-dark btn-lg mx-3' %><%= link_to "Back", users_profile_path, class: 'btn btn-dark btn-lg' %>
+                </div>
             <% end %>
-            <div class="col-md-6 col-lg-6 col-lg-6 col-xl-6">
-              <div class="form-floating mt-3 text-center">
-                <strong><%= f.label "Change Password?", class: 'mb-3' %></strong>
-                <div class="form-floating">
-                  <%= f.password_field :current_password, id: "floatingInput", class: 'form-control', placeholder: 'Current Password' %>
-                  <br/>
-                  <%= f.label "Current_password (We need your current password to confirm your changes)", for: "floatingInput" %>
-                </div>
-                <div class="form-floating mt-3">
-                  <%= f.password_field :password, class: 'form-control', id: "floatingInput", placeholder: "New Password" %>
-                  <br>
-                  <%= f.label "New Password (Minimum of 6 characters minimum}" %>
-                </div>
-                <div class="form-floating mt-3">
-                  <%= f.password_field :password_confirmation, class: 'form-control', id: "floatingInput", placeholder: "Password Confirmation" %>
-                  <%= f.label "New Password Confirmation" %><br/>
-                </div>
-              </div>
             </div>
-            <div class="text-center mt-3">
-              <%= f.submit class: 'btn btn-primary btn-lg mx-3' %><%= link_to "Back", users_profile_path, class: 'btn btn-primary btn-lg' %>
-            </div>
-        <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -1,21 +1,32 @@
-<nav class="navbar navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-center text-white sticky-top border-bottom">
   <div class="container">
-    <a class="navbar-brand">Brand Image</a>
-    <div class="d-flex p-1">
-      <button class="btn btn-outline-success mx-1 " type="submit">Coins</button>
-      <button class="btn btn-outline-success mx-1" type="submit">Claim</button>
-      <button class="btn btn-outline-success mx-1" type="submit">Language</button>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          =
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <% if user_signed_in? %>
-            <%= button_to "Log Out", destroy_user_session_path, { onclick: "return confirm('Are you sure you want to delete?')", method: :delete, class: "dropdown-item" } %>
-          <% else %>
-            <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
-          <% end %>
-        </ul>
+    <span class="navbar-brand">Brand Image</span>
+    <div class="d-flex">
+      <div class="btn-group" role="group">
+        <% if user_signed_in? %>
+          <button class="btn btn-outline-light btn-floating m-1" type="submit">Coins</button>
+          <button class="btn btn-outline-light btn-floating m-1" type="submit">Claim</button>
+        <% end %>
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="d-none d-sm-inline mx-1">Change Language</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end bg-light">
+            <%= link_to "EN", params.permit!.merge(locale: 'en'), class: 'dropdown-item' %>
+            <%= link_to "zh-CN", params.permit!.merge(locale: 'zh-CN'), class: 'dropdown-item' %>
+            <%= link_to "tagalog", params.permit!.merge(locale: 'tg'), class: 'dropdown-item' %>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle bi-list-task" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          <ul class="dropdown-menu dropdown-menu-end bg-light">
+            <% if user_signed_in? %>
+              <%= button_to "Log Out", destroy_user_session_path, { onclick: "return confirm('Are you sure you want to delete?')", method: :delete, class: "dropdown-item" } %>
+            <% else %>
+              <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

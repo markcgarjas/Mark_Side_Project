@@ -1,0 +1,18 @@
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <%= form_with model: category, url: path do |form| %>
+              <%= form.label :name, class: 'form-label' %><br>
+              <%= form.text_field :name, class: 'form-control' %><br>
+              <%= form.submit class: 'btn btn-warning' %>
+              <%= link_to "Back", admins_categories_path, class: 'btn btn-dark' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

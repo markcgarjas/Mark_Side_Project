@@ -1,38 +1,34 @@
-<%= render "layouts/users/header" %>
 <%= render "users/shared/error_messages", resource: resource %>
-<section class="bg-secondary">
-  <div class="container mt-lg-5">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-10 col-md-8 col-lg-6 col-xl-6">
-        <div class="card shadow-2-strong border-0">
-          <div class="card-body m-0 text-center">
-            <div class="card shadow-lg rounded-3">
-              <div class="card-body bg-light">
-                <ul class="nav nav-pills nav-justified">
-                  <li class="nav-item">
-                    <%= link_to "Log in", new_session_path(resource_name), class: " bg-warning nav-link active" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
-                  </li>
-                </ul>
-                <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
-                <div class="form-floating mt-3">
-                  <%= f.email_field :email, class: "form-control", id: "floatingInput", placeholder: "name@example.com" %>
-                  <br/>
-                  <%= f.label :email, for: "floatingInput" %>
-                </div>
-                <div class="form-floating">
-                  <%= f.password_field :password, class: "form-control", id: "floatingInput", placeholder: "Password" %>
-                  <br/>
-                  <%= f.label :password, for: "floatingInput" %>
-                </div>
-                <div class="actions">
-                  <%= f.submit "Login", class: "w-100 btn btn-lg btn-primary" %>
-                </div>
-                <% end %>
+<h1 class="text-center text-white">Login</h1>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="col-9 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <ul class="nav nav-pills nav-justified border">
+              <li class="nav-item">
+                <%= link_to "Log in", new_session_path(resource_name), class: " bg-warning text-dark nav-link active" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
+              </li>
+            </ul>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="form-floating mt-3">
+                <%= f.email_field :email, class: "form-control", id: "floatingInput", placeholder: "name@example.com" %>
+                <br/>
+                <%= f.label :email, for: "floatingInput" %>
               </div>
-            </div>
+              <div class="form-floating">
+                <%= f.password_field :password, class: "form-control", id: "floatingInput", placeholder: "Password" %>
+                <br/>
+                <%= f.label :password, for: "floatingInput" %>
+              </div>
+              <div class="actions">
+                <%= f.submit "Login", class: "w-100 btn btn-lg btn-dark" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
