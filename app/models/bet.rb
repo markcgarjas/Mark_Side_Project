@@ -4,6 +4,7 @@ class Bet < ApplicationRecord
   validates :coins, numericality: { greater_than: 0 }
   belongs_to :user
   belongs_to :item
+  has_many :winners
   after_create :minus_coins, :generate_serial_number
   after_validation :coins_enough?
   after_validation :minimum_bet?

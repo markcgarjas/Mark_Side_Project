@@ -146,4 +146,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_13_050613) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "winners", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "bet_id"
+    t.bigint "user_id"
+    t.bigint "address_id"
+    t.integer "item_batch_count"
+    t.string "state"
+    t.float "price", default: 0.0
+    t.datetime "paid_at"
+    t.bigint "admin_id"
+    t.string "picture"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_winners_on_address_id"
+    t.index ["admin_id"], name: "index_winners_on_admin_id"
+    t.index ["bet_id"], name: "index_winners_on_bet_id"
+    t.index ["item_id"], name: "index_winners_on_item_id"
+    t.index ["user_id"], name: "index_winners_on_user_id"
+  end
+
 end

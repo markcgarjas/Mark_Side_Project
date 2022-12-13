@@ -34,6 +34,14 @@ Rails.application.routes.draw do
       resources :bets do
         put 'cancel_bet', to: 'bets#cancel_bet'
       end
+      resources :winners do
+        put 'submit_event', to: 'items#submit_event'
+        put 'pay_event', to: 'items#pay_event'
+        put 'ship_event', to: 'items#ship_event'
+        put 'deliver_event', to: 'items#deliver_event'
+        put 'publish_event', to: 'items#publish_event'
+        put 'remove_publish_event', to: 'items#remove_publish_event'
+      end
     end
   end
 

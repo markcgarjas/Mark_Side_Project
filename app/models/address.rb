@@ -6,6 +6,7 @@ class Address < ApplicationRecord
   belongs_to :province, class_name: 'Address::Province', foreign_key: 'address_province_id'
   belongs_to :city_municipality, class_name: 'Address::CityMunicipality', foreign_key: 'address_city_municipality_id'
   belongs_to :barangay, class_name: 'Address::Barangay', foreign_key: 'address_barangay_id'
+  has_many :winners
   validate :address_limit, on: :create
   validates :genre, presence: true
   validates :name, presence: true
