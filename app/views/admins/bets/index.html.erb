@@ -1,0 +1,82 @@
+<h1 class="text-center text-dark">Bets</h1>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <%= form_tag({ url: admins_bets_path }, method: :get) do %>
+              <div class="row">
+                <div class="col-6">
+                  <%= label_tag :serial_number %>
+                  <%= text_field_tag :serial_number, params[:serial_number], class: 'form-control' %>
+                </div>
+                <div class="col-6">
+                  <%= label_tag :item_name %>
+                  <%= text_field_tag :item_name, params[:item_name], class: 'form-control' %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <%= label_tag :email %>
+                  <%= text_field_tag :email, params[:email], class: 'form-control' %>
+                </div>
+                <div class="col-6">
+                  <%= label_tag :state %>
+                  <%= select_tag :state, options_for_select(Bet.aasm.states.map(&:name), params[:state]), { prompt: "Select State", class: 'form-control' } %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <%= label_tag :create_date %>
+                  <%= date_field_tag :created_at, params[:created_at], class: 'form-control' %>
+                </div>
+                <div class="col-6">
+                  <%= label_tag :end_date %>
+                  <%= date_field_tag :ended_at, params[:ended_at], class: 'form-control' %>
+                </div>
+              </div>
+              <%= submit_tag :Search, class: 'btn btn-dark mt-2' %><%= link_to "Cancel",admins_bets_path, class: 'mx-2 btn btn-dark mt-2' %>
+            <% end %>
+            <hr>
+            <div class="d-flex justify-content-center align-content-center">
+              <div style="overflow: auto;">
+                <table class="table-hover table-responsive text-center">
+                  <th>
+                    <tr class="bg-dark text-white table-responsive-sm">
+                      <td>Serial Number</td>
+                      <td>Item Name</td>
+                      <td>Email</td>
+                      <td>Coins</td>
+                      <td>State</td>
+                      <td>Date</td>
+                      <td>Action</td>
+                    </tr>
+                  </th>
+                  <% @bets.each do |bet| %>
+                    <tbody>
+                    <tr>
+                      <td><%= bet.serial_number %></td>
+                      <td><%= bet.item&.name %></td>
+                      <td><%= bet.user.email %></td>
+                      <td><%= bet.coins %></td>
+                      <td><%= bet.state %></td>
+                      <td><%= bet.created_at %></td>
+                      <% if bet.may_cancel? %>
+                        <td><%= button_to "Cancel", admins_bet_cancel_bet_path(bet), method: :put, class: 'btn btn-warning text-dark' %></td>
+                      <% end %>
+                    </tr>
+                    </tbody>
+                  <% end %>
+                </table>
+                <% if @bets.blank? %>
+                  <h3 class="text-center mt-1">No result found</h3>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         resources :addresses
       end
       resources :invite_people, only: :index
-      resources :lottery, only: :index
+      resources :lottery, only: [:index, :show, :create]
     end
   end
 
@@ -31,6 +31,9 @@ Rails.application.routes.draw do
         put 'pause_event', to: 'items#pause_event'
       end
       resources :categories
+      resources :bets do
+        put 'cancel_bet', to: 'bets#cancel_bet'
+      end
     end
   end
 
