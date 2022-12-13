@@ -18,7 +18,9 @@ class Item < ApplicationRecord
   enum status: { inactive: 0, active: 1 }
 
   def destroy
-    update(deleted_at: Time.current)
+    unless bets.present?
+      update(deleted_at: Time.current)
+    end
   end
 
   aasm column: :state do

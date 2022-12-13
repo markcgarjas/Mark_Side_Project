@@ -35,8 +35,13 @@ class Admins::ItemsController < AdminController
   end
 
   def destroy
-    @item.destroy
-    redirect_to admins_items_path
+    if @item.destroy
+      flash[:notice] = "#{@item.name} Deleted"
+      redirect_to admins_items_path
+    else
+      flash[:notice] = " You cant delete #{@item.name}"
+      redirect_to admins_items_path
+    end
   end
 
   def start_event
