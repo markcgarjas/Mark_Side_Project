@@ -30,7 +30,7 @@ class Item < ApplicationRecord
 
     event :start do
       transitions from: [:pending, :ended, :cancelled], to: :starting,
-                  guards: [:quantity_enough?, :status_is_active?, :offline_at_present_day?],
+                  guards: [:quantity_enough?, :active?, :offline_at_present_day?],
                   success: :update_quantity_and_batch_count
       transitions from: :pending, to: :starting
       transitions from: :paused, to: :starting
@@ -41,8 +41,7 @@ class Item < ApplicationRecord
     end
 
     event :end do
-      transitions from: [:pending, :starting], to: :ended
-      transitions from: :start, to: :ended, after: :update_status
+      transitions from: :starting, to: :ended, guard: :minimum_bet?, after: :raffle
     end
 
     event :cancel do
@@ -52,7 +51,6 @@ class Item < ApplicationRecord
 
   def update_quantity_and_batch_count
     self.update(quantity: self.quantity - 1, batch_count: self.batch_count + 1)
-
   end
 
   def update_quantity_when_cancel
@@ -67,7 +65,16 @@ class Item < ApplicationRecord
     self.offline_at > Time.current
   end
 
-  def status_is_active?
-    self.status == "active"
+  def minimum_bet?
+    self.minimum_bets <= bets.where(batch_count: batch_count, state: :betting).count
+  end
+
+  def raffle
+    list = bets.where(batch_count: batch_count, state: :betting)
+    winner_bet = list.sample
+    winner_bet.win!
+    list.where.not(id: winner_bet.id).update_all(state: :lost)
+    winners.new(user: winner_bet.user, item_batch_count: batch_count, address: winner_bet.user.addresses.find_by(is_default: true), bet: winner_bet, admin: User.all.find_by(role: 1)).save!
   end
 end
+

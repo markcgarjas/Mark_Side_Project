@@ -58,7 +58,7 @@ class Admins::ItemsController < AdminController
   def end_event
     if @item.may_end?
       @item.end!
-      flash[:notice] = "#{@item.name} Ended"
+      flash[:notice] = "#{@item.name} Ended! We have one lucky winner!"
       redirect_to admins_items_path
     else
       flash[:notice] = "You cant end"

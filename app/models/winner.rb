@@ -5,9 +5,10 @@ class Winner < ApplicationRecord
   belongs_to :user
   belongs_to :address
   belongs_to :bet
-  belongs_to :admin, class_name: 'User'
+  belongs_to :admin, class_name: 'User', optional: true
 
   aasm column: :state do
+    state :won, initial: true
     state :won, :claimed, :submitted, :paid, :shipped, :delivered, :share, :published, :remove_published
 
     event :win do
