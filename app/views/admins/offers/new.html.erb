@@ -1,0 +1,3 @@
+<%= render 'layouts/admins/error_message', resource: @offer %>
+<h1 class="text-center text-dark">Add Offer</h1>
+<%= render partial: 'form', locals: { item: @offer, path: admins_offers_path } %>
