@@ -5,6 +5,7 @@ class Offer < ApplicationRecord
   validates :amount, presence: true
   validates :genre, presence: true
   validates :status, presence: true
+  has_many :orders
 
   mount_uploader :image, ImageUploader
 
