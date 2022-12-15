@@ -44,6 +44,10 @@ Rails.application.routes.draw do
         put 'remove_publish_event', to: 'items#remove_publish_event'
       end
       resources :offers
+      resources :orders do
+        put 'pay_event', to: 'orders#pay_event'
+        put 'cancel_event', to: 'orders#cancel_event'
+      end
     end
   end
 
