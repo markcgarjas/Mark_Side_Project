@@ -4,7 +4,7 @@
     <div class="d-flex">
       <div class="btn-group" role="group">
         <% if user_signed_in? %>
-          <button class="btn btn-outline-light btn-floating m-1" type="submit">Coins</button>
+          <button class="btn btn-outline-light btn-floating m-1 bi-coin" type="submit"> <%= current_user.coins %></button>
           <button class="btn btn-outline-light btn-floating m-1" type="submit">Claim</button>
         <% end %>
         <div class="btn-group">
