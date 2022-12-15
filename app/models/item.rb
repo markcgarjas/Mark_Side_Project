@@ -45,7 +45,7 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:pending, :starting], to: :cancelled, after: :update_quantity_when_cancel
+      transitions from: [:pending, :starting], to: :cancelled, after: [:update_quantity_when_cancel, :return_bet]
     end
   end
 
@@ -55,6 +55,10 @@ class Item < ApplicationRecord
 
   def update_quantity_when_cancel
     self.update(quantity: self.quantity + 1)
+  end
+
+  def return_bet
+    bets.where(batch_count: batch_count).where.not(state: :cancelled).each { |bet| bet.cancel! }
   end
 
   def quantity_enough?
