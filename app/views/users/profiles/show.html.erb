@@ -41,6 +41,9 @@
             <% @orders&.each do |order| %>
               <div class="card my-2">
                 <div class="card-body bg-dark">
+                  <%= button_to "Cancel Order", cancel_event_users_profile_path(order), method: :put, class: 'btn btn-outline-warning', onclick: "return confirm('Are you sure you want to cancel?')" if order.may_cancel? %>
+                  <span class="text-warning"><%= "You dont have any process order!" unless order.may_cancel? %></span>
+                  <hr style="height: 1px; border: none; border-top: 4px solid; color: white">
                   <span class="text-warning">Serial Number: </span><span class="text-white"><%= order.serial_number %></span><br>
                   <span class="text-warning">Amount: </span><span class="text-white"><%= order.amount %></span><br>
                   <span class="text-warning">Coins: </span><span class="text-white"><%= order.coin %></span><br>

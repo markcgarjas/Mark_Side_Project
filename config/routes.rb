@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       root "homes#index"
       resource :home
       resource :profile, show: :only do
+        put 'cancel_event/:id', as: :cancel_event, to: 'profiles#cancel_event'
         resources :addresses
       end
       resources :invite_people, only: :index

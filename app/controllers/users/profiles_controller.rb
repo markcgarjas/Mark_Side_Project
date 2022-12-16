@@ -6,4 +6,16 @@ class Users::ProfilesController < ApplicationController
     @lotteries = Bet.where(user: @user) if params[:lottery] == 'lotteries'
     @invitations = User.where(parent: @user) if params[:invitation] == 'invitations'
   end
+
+  def cancel_event
+    @order = current_user.orders.find(params[:id])
+    if @order.may_cancel?
+      @order.cancel!
+      flash[:notice] = "Successfully Cancelled"
+      redirect_to users_profile_path(order: :orders)
+    else
+      flash[:notice] = "Error when cancel"
+      redirect_to users_profile_path(order: :orders)
+    end
+  end
 end
