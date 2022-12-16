@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :shop
       resources :claim
       resources :feedback
+      resources :share
     end
   end
 

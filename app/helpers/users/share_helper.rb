@@ -1,0 +1,2 @@
+module Users::ShareHelper
+end
