@@ -1,5 +1,5 @@
 class Admins::WinnersController < AdminController
-  before_action :set_winner_event, only: [:submit_event, :pay_event, :ship_event, :deliver_event, :publish_event, :remove_publish_event]
+  before_action :set_winner_event, only: [:submit_event, :pay_event, :ship_event, :deliver_event, :share_event, :publish_event, :remove_publish_event]
 
   def index
     @winners = Winner.includes(:user, :item, :bet).all
@@ -12,38 +12,44 @@ class Admins::WinnersController < AdminController
 
   def submit_event
     @winner.submit!
-    flash[:notice] = "#{@winner.serial_number} Cancelled"
-    redirect_to admins_bets_path
+    flash[:notice] = "#{@winner.bet.serial_number} Submitted"
+    redirect_to admins_winners_path
   end
 
   def pay_event
     @winner.pay!
-    flash[:notice] = "#{@winner.serial_number} Paid"
-    redirect_to admins_bets_path
+    flash[:notice] = "#{@winner.bet.serial_number} Paid"
+    redirect_to admins_winners_path
   end
 
   def ship_event
     @winner.ship!
-    flash[:notice] = "#{@winner.serial_number} Shipped"
-    redirect_to admins_bets_path
+    flash[:notice] = "#{@winner.bet.serial_number} Shipped"
+    redirect_to admins_winners_path
   end
 
   def deliver_event
     @winner.deliver!
-    flash[:notice] = "#{@winner.serial_number} Delivered"
-    redirect_to admins_bets_path
+    flash[:notice] = "#{@winner.bet.serial_number} Delivered"
+    redirect_to admins_winners_path
+  end
+
+  def share_event
+    @winner.share!
+    flash[:notice] = "#{@winner.bet.serial_number} Shared"
+    redirect_to admins_winners_path
   end
 
   def publish_event
     @winner.publish!
-    flash[:notice] = "#{@winner.serial_number} Published"
-    redirect_to admins_bets_path
+    flash[:notice] = "#{@winner.bet.serial_number} Published"
+    redirect_to admins_winners_path
   end
 
   def remove_publish_event
     @winner.remove_publish!
-    flash[:notice] = "#{@winner.serial_number} Remove Published"
-    redirect_to admins_bets_path
+    flash[:notice] = "#{@winner.bet.serial_number} Remove Published"
+    redirect_to admins_winners_path
   end
 
   private

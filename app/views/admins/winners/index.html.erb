@@ -1,4 +1,4 @@
-<h1 class="text-center text-dark">Winner</h1>
+<h1 class="text-center text-dark">Winner List</h1>
 <section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
@@ -9,34 +9,34 @@
               <div class="row">
                 <div class="col-12">
                   <%= label_tag :serial_number %>
-                  <%= text_field_tag :serial_number, params[:serial_number], class: 'form-control' %>
+                  <%= text_field_tag :serial_number, params[:serial_number], class: 'form-control form-control-sm' %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6">
                   <%= label_tag :email %>
-                  <%= text_field_tag :email, params[:email], class: 'form-control' %>
+                  <%= text_field_tag :email, params[:email], class: 'form-control form-control-sm' %>
                 </div>
                 <div class="col-6">
                   <%= label_tag :state %>
-                  <%= select_tag :state, options_for_select(Winner.aasm.states.map(&:name), params[:state]), { prompt: "Select State", class: 'form-control' } %>
+                  <%= select_tag :state, options_for_select(Winner.aasm.states.map(&:name), params[:state]), { prompt: "Select State", class: 'form-control form-control-sm' } %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6">
                   <%= label_tag :create_date %>
-                  <%= date_field_tag :created_at, params[:created_at], class: 'form-control' %>
+                  <%= date_field_tag :created_at, params[:created_at], class: 'form-control form-control-sm' %>
                 </div>
                 <div class="col-6">
                   <%= label_tag :end_date %>
-                  <%= date_field_tag :ended_at, params[:ended_at], class: 'form-control' %>
+                  <%= date_field_tag :ended_at, params[:ended_at], class: 'form-control form-control-sm' %>
                 </div>
               </div>
-              <%= submit_tag :Search, class: 'btn btn-dark mt-2' %><%= link_to "Cancel", admins_winners_path, class: 'mx-2 btn btn-dark mt-2' %>
+              <%= submit_tag :Search, class: 'btn btn-dark btn-sm mt-2' %><%= link_to "Reset", admins_winners_path, class: 'mx-2 btn btn-sm btn-dark mt-2' %>
             <% end %>
             <hr>
             <div style="overflow: auto;">
-              <table class="table-hover table-responsive text-center w-100">
+              <table class="table table-hover table-sm table-responsive text-center w-100">
                 <th>
                   <tr class="bg-dark text-white table-responsive-sm">
                     <td>Serial Number</td>
@@ -54,22 +54,22 @@
                     <td><%= winner.state %></td>
                     <td><%= winner.created_at %></td>
                     <% if winner.may_submit? %>
-                      <td><%= button_to "Submit", admins_winner_submit_event_path(winner), method: :put, class: 'btn btn-warning text-dark' %></td>
+                      <td><%= button_to "Submit", admins_winner_submit_event_path(winner), method: :put, class: 'btn btn-warning btn-sm text-dark' %></td>
                     <% end %>
                     <% if winner.may_pay? %>
-                      <td><%= button_to "Pay", admins_winner_pay_event_path(winner), method: :put, class: 'btn btn-warning text-dark' %></td>
+                      <td><%= button_to "Pay", admins_winner_pay_event_path(winner), method: :put, class: 'btn btn-warning btn-sm text-dark' %></td>
                     <% end %>
                     <% if winner.may_ship? %>
-                      <td><%= button_to "Ship", admins_winner_ship_event_path(winner), method: :put, class: 'btn btn-warning text-dark' %></td>
+                      <td><%= button_to "Ship", admins_winner_ship_event_path(winner), method: :put, class: 'btn btn-warning btn-sm text-dark' %></td>
                     <% end %>
                     <% if winner.may_deliver? %>
-                      <td><%= button_to "Deliver", admins_winner_deliver_event_path(winner), method: :put, class: 'btn btn-warning text-dark' %></td>
+                      <td><%= button_to "Deliver", admins_winner_deliver_event_path(winner), method: :put, class: 'btn btn-warning btn-sm text-dark' %></td>
                     <% end %>
                     <% if winner.may_publish? %>
-                      <td><%= button_to "Publish", admins_winner_publish_event_path(winner), method: :put, class: 'btn btn-warning text-dark' %></td>
+                      <td><%= button_to "Publish", admins_winner_publish_event_path(winner), method: :put, class: 'btn btn-warning btn-sm text-dark' %></td>
                     <% end %>
                     <% if winner.may_remove_publish? %>
-                      <td><%= button_to "Remove Publish", admins_winner_remove_publish_event_path(winner), method: :put, class: 'btn btn-warning text-dark' %></td>
+                      <td><%= button_to "Remove Publish", admins_winner_remove_publish_event_path(winner), method: :put, class: 'btn btn-warning btn-sm text-dark' %></td>
                     <% end %>
                   </tr>
                   </tbody>

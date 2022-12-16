@@ -9,7 +9,7 @@ class Winner < ApplicationRecord
 
   aasm column: :state do
     state :won, initial: true
-    state :won, :claimed, :submitted, :paid, :shipped, :delivered, :share, :published, :remove_published
+    state :won, :claimed, :submitted, :paid, :shipped, :delivered, :shared, :published, :remove_published
 
     event :win do
       transitions from: :pending, to: :won
@@ -36,11 +36,11 @@ class Winner < ApplicationRecord
     end
 
     event :share do
-      transitions from: :delivered, to: :shipped
+      transitions from: :delivered, to: :shared
     end
 
     event :publish do
-      transitions from: :shipped, to: :published
+      transitions from: :shared, to: :published
       transitions from: :remove_published, to: :published
     end
 
