@@ -1,0 +1,2 @@
+module Users::ClaimHelper
+end

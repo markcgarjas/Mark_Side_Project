@@ -16,6 +16,10 @@ class Address < ApplicationRecord
   after_save :only_one_default_address
   before_create :default_address_when_empty
 
+  def address_concat
+    "#{street}, #{region&.name}, #{province&.name}, #{city_municipality&.name}, #{barangay&.name}"
+  end
+
   private
 
   def address_limit

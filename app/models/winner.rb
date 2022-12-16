@@ -3,7 +3,7 @@ class Winner < ApplicationRecord
 
   belongs_to :item
   belongs_to :user
-  belongs_to :address
+  belongs_to :address, optional: true
   belongs_to :bet
   belongs_to :admin, class_name: 'User', optional: true
 
