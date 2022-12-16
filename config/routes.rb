@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :lottery, only: [:index, :show, :create]
       resources :shop
       resources :claim
+      resources :feedback
     end
   end
 
