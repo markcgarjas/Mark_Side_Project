@@ -6,11 +6,11 @@
         <div class="card shadow-lg rounded-3">
           <div class="card-body bg-light">
             <p class="text-center">
-              <%= image_tag "#{current_user.image.url}", width: "100", height: "100" if current_user.image? %>
+              <%= image_tag "#{@user.image.url}", width: "100", height: "100" if @user.image? %>
             </p>
-            <p>Username: <%= current_user.username %></p>
-            <p>Email: <%= current_user.email %></p>
-            <p>Coins: <%= current_user.coins %></p>
+            <p>Username: <%= @user.username %></p>
+            <p>Email: <%= @user.email %></p>
+            <p>Coins: <%= @user.coins %></p>
             <div class="container col-8">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
@@ -26,6 +26,64 @@
                 </li>
               </ul>
             </div>
+            <hr>
+            <div class="d-flex">
+              <%= link_to "Order History", users_profile_path(order: :orders), class: 'btn btn-sm btn-warning mx-2' if params[:order] == 'orders' %>
+              <%= link_to "Order History", users_profile_path(order: :orders), class: 'btn btn-sm btn-dark mx-2' unless params[:order] == 'orders' %>
+              <%= link_to "Lottery History", users_profile_path(lottery: :lotteries), class: 'btn btn-sm btn-warning mx-2' if params[:lottery] == 'lotteries' %>
+              <%= link_to "Lottery History", users_profile_path(lottery: :lotteries), class: 'btn btn-sm btn-dark mx-2' unless params[:lottery] == 'lotteries' %>
+              <%= link_to "Winning History", users_profile_path(winner: :winners), class: 'btn btn-sm btn-warning mx-2' if params[:winner] == 'winners' %>
+              <%= link_to "Winning History", users_profile_path(winner: :winners), class: 'btn btn-sm btn-dark mx-2' unless params[:winner] == 'winners' %>
+              <%= link_to "Invitation History", users_profile_path(invitation: :invitations), class: 'btn btn-sm btn-warning mx-2' if params[:invitation] == 'invitations' %>
+              <%= link_to "Invitation History", users_profile_path(invitation: :invitations), class: 'btn btn-sm btn-dark mx-2' unless params[:invitation] == 'invitations' %>
+            </div>
+            <hr>
+            <% @orders&.each do |order| %>
+              <div class="card my-2">
+                <div class="card-body bg-dark">
+                  <span class="text-warning">Serial Number: </span><span class="text-white"><%= order.serial_number %></span><br>
+                  <span class="text-warning">Amount: </span><span class="text-white"><%= order.amount %></span><br>
+                  <span class="text-warning">Coins: </span><span class="text-white"><%= order.coin %></span><br>
+                  <span class="text-warning">Created at: </span><span class="text-white"><%= order.created_at %></span><br>
+                  <span class="text-warning">State: </span><span class="text-danger"><%= order.state.capitalize %></span>
+                </div>
+              </div>
+            <% end %>
+            <% @invitations&.each do |invitation| %>
+              <div class="card my-2">
+                <div class="card-body bg-dark">
+                  <span class="text-warning">Parent: </span><span class="text-white"><%= invitation.email %></span><br>
+                  <span class="text-warning">Created at: </span><span class="text-white"><%= invitation.created_at %></span><br>
+                </div>
+              </div>
+            <% end %>
+            <% @winners&.each do |winner| %>
+              <div class="card my-2">
+                <div class="card-body bg-dark">
+                  <%= link_to "Claim", users_claim_path(winner), class: 'btn btn-outline-warning' if winner.may_claim? %>
+                  <span class="text-warning"><%= "You already claimed!" unless winner.may_claim? %></span>
+                  <hr style="height: 1px; border: none; border-top: 4px solid; color: white">
+                  <span class="text-warning">Serial Number: </span><span class="text-white"><%= winner.bet.serial_number %></span><br>
+                  <span class="text-warning">Winner in: </span><span class="text-white"><%= winner.item.name %></span><br>
+                  <span class="text-warning">State: </span><span class="text-danger"><%= winner.state.capitalize %></span><br>
+                  <span class="text-warning">Created at: </span><span class="text-white"><%= winner.created_at %></span><br>
+                </div>
+              </div>
+            <% end %>
+            <% @lotteries&.each do |lottery| %>
+              <div class="card my-2">
+                <div class="card-body bg-dark">
+                  <span class="text-warning">Serial Number: </span><span class="text-white"><%= lottery.serial_number %></span><br>
+                  <span class="text-warning">Created at: </span><span class="text-white"><%= lottery.created_at %></span><br>
+                  <span class="text-warning">State: </span><span class="text-danger"><%= lottery.state.capitalize %></span><br>
+                </div>
+              </div>
+            <% end %>
+            <% unless @profile.present? || @orders.present? || @invitations.present? || @winners.present? || @lotteries.present? %>
+              <h1 class="text-center">No History</h1>
+            <% end %>
+            <div class="mt-lg-5 text-white">.</div>
+            <div class="mt-lg-2 text-white">.</div>
           </div>
         </div>
       </div>
