@@ -7,7 +7,17 @@
           <div class="card-body bg-light">
           </div>
           <%= image_tag @item.image.url, height: "500", class: 'mx-auto d-block w-100' %>
-          <div class="mt-3">
+          <div class="m-2 border border-4">
+            <div class="p-1">
+              <p class="mt-2"><%= @item.name %></p>
+              <div class="progress">
+                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= @progress_bars %>%" aria-valuenow="<%= @progress_bars %>" aria-valuemin="0" aria-valuemax="<%= @progress_bars %>"></div>
+              </div>
+              <p class="mt-2"><%= @percent %>%</p>
+              <p class="mt-2"><%= @bet_count %>/<%= @item.minimum_bets %></p>
+            </div>
+          </div>
+          <div class="p-2">
             <%= form_with model: @bet, url: users_lottery_index_path, method: :post do |f| %>
               <%= f.number_field :coins, class: 'form-control', value: 1 %>
               <%= f.submit "Submit", class: 'form-control btn btn-warning my-2' %>

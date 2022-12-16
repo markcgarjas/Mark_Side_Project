@@ -12,6 +12,11 @@ class Users::LotteryController < ApplicationController
     @item = Item.where(state: :starting).find(params[:id])
     @bet = Bet.new
     @owner_users = @bets.where(user: current_user, batch_count: @item.batch_count, item: @item)
+    @progress_bars = @item.bets.where(batch_count: @item.batch_count).count.to_f
+    @progress_bars = (@progress_bars / @item.minimum_bets).to_f
+    @progress_bars = (@progress_bars * 100).to_i
+    @bet_count = @item.bets.where(batch_count: @item.batch_count).count
+    @percent =  [@progress_bars, 100].min
   end
 
   def create
