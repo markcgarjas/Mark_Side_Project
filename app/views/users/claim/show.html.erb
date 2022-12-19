@@ -8,14 +8,13 @@
             <span class="text-danger">Serial Number: </span><span><%= @winner.bet.serial_number %></span><br>
             <span class="text-danger">Created at: </span><%= @winner.created_at %>
             <hr>
-            <h2 class="text-center">Update Address</h2>
-            <hr>
             <div class="text-center">
-            <%= form_with model: @winner, url: users_claim_path, method: :patch do |form| %>
-              <%= form.label :address, class: 'form-label' %>:
-              <%= form.select :address, options_for_select(current_user.addresses.map { |u| [u.address_concat, u.id] }) %><br>
-              <%= form.submit "Claim", class: 'btn btn-dark mt-2' %>
-            <% end %>
+              <%= form_with model: @winner, url: users_claim_path, method: :patch do |form| %>
+                <%= form.label :address, class: 'form-label' %>:
+                <%= form.select :address_id, options_for_select(current_user.addresses.map { |u| [u.address_concat, u.id] }), { prompt: "Select Status" }, class: 'form-select' %>
+                <br>
+                <%= form.submit "Claim", class: 'btn btn-dark mt-2' %>
+              <% end %>
             </div>
             <hr>
             <% if @addresses.blank? %>

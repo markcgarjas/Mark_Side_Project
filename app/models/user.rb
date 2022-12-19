@@ -6,6 +6,7 @@ class User < ApplicationRecord
   enum role: { client: 0, admin: 1 }
   validates :phone, phone: { possible: true, allow_blank: true, types: [:voip, :mobile], countries: :ph }, length: { maximum: 13 }
   mount_uploader :image, ImageUploader
+  validates :coins, numericality: { greater_than: 0 }
 
   has_many :addresses
   belongs_to :parent, class_name: "User", optional: true, counter_cache: :children_members

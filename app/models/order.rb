@@ -20,7 +20,8 @@ class Order < ApplicationRecord
     end
 
     event :pay do
-      transitions from: :submitted, to: :paid, after: [:pay_deduction, :increase_total_deposit]
+      transitions from: :submitted, to: :paid, guard: :not_deduct?, after: [:pay_deduction, :increase_total_deposit]
+      transitions from: :submitted, to: :paid, guard: :enough_coins?, after: [:pay_deduction, :increase_total_deposit]
     end
   end
 
@@ -38,6 +39,10 @@ class Order < ApplicationRecord
     else
       self.user.update(coins: self.user.coins - coin)
     end
+  end
+
+  def not_deduct?
+    !deduct?
   end
 
   def decrease_total_deposit
