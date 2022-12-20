@@ -55,6 +55,7 @@ Rails.application.routes.draw do
         put 'pay_event', to: 'orders#pay_event'
         put 'cancel_event', to: 'orders#cancel_event'
       end
+      resources :invites, only: :index
     end
   end
 
