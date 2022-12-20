@@ -56,6 +56,7 @@ Rails.application.routes.draw do
         put 'cancel_event', to: 'orders#cancel_event'
       end
       resources :invites, only: :index
+      resources :news_tickers
     end
   end
 
