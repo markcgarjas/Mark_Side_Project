@@ -1,0 +1,62 @@
+<h1 class="text-center">Balance Operate for <%= @user.email %></h1>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="row d-flex">
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="card">
+              <div class="card-body">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                  <%= link_to "Increase", admins_user_new_path(genre: :increase), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'increase' %>
+                  <%= link_to "Increase", admins_user_new_path(genre: :increase), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'increase' %>
+                  <%= link_to "Deduct", admins_user_new_path(genre: :deduct), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'deduct' %>
+                  <%= link_to "Deduct", admins_user_new_path(genre: :deduct), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'deduct' %>
+                  <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'bonus' %>
+                  <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'bonus' %>
+                </div>
+                <hr>
+                <div class="form">
+                  <%= form_with model: @order, url: admins_user_create_path, method: :post do |form| %>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon3" style="width: auto">Coins</span>
+                      <%= form.text_field :coin, class: 'form-control' %>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon3" style="width: auto">Remarks</span>
+                      <%= form.text_field :remarks, class: 'form-control' %>
+                    </div>
+                    <div class="input-group mb-3">
+                      <%= form.submit "Order", class: 'btn btn-warning' %>
+                      <%= link_to "Back", admins_users_path, class: 'btn btn-dark' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <div class="card">
+              <div class="card-body mt-2">
+                <%= form_tag({ url: admins_user_new_path }, method: :get) do %>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3" style="width: auto">Username</span>
+                    <%= text_field_tag :username, @user.username, class: 'form-control', readonly: true %>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3" style="width: auto">Promoter Name</span>
+                    <%= text_field_tag :parent, @user.parent&.username, class: 'form-control', readonly: true %>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3" style="width: auto">Coins</span>
+                    <%= text_field_tag :username, @user.coins, class: 'form-control', readonly: true %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 class Admins::OrdersController < AdminController
   before_action :set_order, only: [:pay_event, :cancel_event]
+  before_action :set_user, only: [:new, :create]
 
   def index
     @orders = Order.includes(:user, :offer).all
@@ -10,6 +11,29 @@ class Admins::OrdersController < AdminController
     @orders = @orders.where(offer: { name: params[:name] }) if params[:name].present?
     @orders = @orders.where('orders.created_at >= ?', params[:created_at]) if params[:created_at].present?
     @orders = @orders.where('orders.created_at <= ?', params[:ended_at]) if params[:ended_at].present?
+  end
+
+  def new
+    @order = Order.new
+  end
+
+  def create
+    @order = Order.new(order_params)
+    @order.user = @user
+    @order.genre = params[:genre]
+    if @order.save
+      if @order.submit! && @order.may_pay? && @order.pay!
+        flash[:notice] = "Successfully Created"
+        redirect_to admins_user_new_path
+      else
+        @order.cancel!
+        flash[:notice] = "You cant create"
+        redirect_to admins_user_new_path
+      end
+    else
+      flash[:alert] = @order.errors.full_messages.join(", ")
+      redirect_to admins_user_new_path
+    end
   end
 
   def pay_event
@@ -38,5 +62,13 @@ class Admins::OrdersController < AdminController
 
   def set_order
     @order = Order.find(params[:order_id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def order_params
+    params.require(:order).permit(:coin, :remarks)
   end
 end

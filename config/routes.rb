@@ -28,7 +28,10 @@ Rails.application.routes.draw do
       root "home#index"
       resources :home
       devise_for :users, controllers: { sessions: 'admins/sessions' }
-      resources :users, index: :only
+      resources :users, path: "users/clients" do
+        get 'orders/:genre/new', as: :new, to: 'orders#new'
+        post 'orders/:genre', as: :create, to: 'orders#create'
+      end
       resources :items do
         put 'start_event', to: 'items#start_event'
         put 'end_event', to: 'items#end_event'

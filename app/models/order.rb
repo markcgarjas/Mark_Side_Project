@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   include AASM
-  belongs_to :offer
+  validates :remarks, presence: true
+  belongs_to :offer, optional: true
   belongs_to :user
   after_create :generate_serial_number
 
