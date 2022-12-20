@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       end
       resources :invites, only: :index
       resources :news_tickers
+      resources :banners
     end
   end
 

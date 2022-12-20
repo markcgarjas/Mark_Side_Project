@@ -1,0 +1,3 @@
+<%= render 'layouts/admins/error_message', resource: @banner %>
+<h1 class="text-center text-dark">Edit Banner</h1>
+<%= render partial: 'form', locals: { banner: @banner, path: admins_banner_path } %>

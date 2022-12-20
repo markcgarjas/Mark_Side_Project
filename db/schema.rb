@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_104101) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_20_091634) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -74,6 +74,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_104101) do
     t.index ["address_province_id"], name: "index_addresses_on_address_province_id"
     t.index ["address_region_id"], name: "index_addresses_on_address_region_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "banners", charset: "utf8mb4", force: :cascade do |t|
+    t.string "preview"
+    t.datetime "online_at"
+    t.datetime "offline_at"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bets", charset: "utf8mb4", force: :cascade do |t|
@@ -166,6 +175,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_104101) do
     t.string "phone"
     t.integer "coins", default: 0
     t.integer "total_deposit", default: 0, precision: 10
+    t.integer "total_deposit", default: 0
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
