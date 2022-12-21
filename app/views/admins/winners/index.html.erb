@@ -1,8 +1,10 @@
-<h1 class="text-center text-dark">Winner List</h1>
 <section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">Winner List</h1>
+        </div>
         <div class="card shadow-lg rounded-3">
           <div class="card-body bg-light">
             <%= form_tag({ url: admins_winners_path }, method: :get) do %>
@@ -19,7 +21,8 @@
                 </div>
                 <div class="col-6">
                   <%= label_tag :state %>
-                  <%= select_tag :state, options_for_select(Winner.aasm.states.map(&:name), params[:state]), { prompt: "Select State", class: 'form-control form-control-sm' } %>
+                  <%= select_tag :state, options_for_select(Winner.aasm.states.map(&:name), params[:state]),
+                                 { prompt: "Select State", class: 'form-control form-control-sm' } %>
                 </div>
               </div>
               <div class="row">
@@ -32,20 +35,21 @@
                   <%= date_field_tag :ended_at, params[:ended_at], class: 'form-control form-control-sm' %>
                 </div>
               </div>
-              <%= submit_tag :Search, class: 'btn btn-dark btn-sm mt-2' %><%= link_to "Reset", admins_winners_path, class: 'mx-2 btn btn-sm btn-dark mt-2' %>
+              <%= submit_tag :Search, class: 'btn btn-dark btn-sm mt-2' %>
+              <%= link_to "Reset", admins_winners_path, class: 'mx-2 btn btn-sm btn-dark mt-2' %>
             <% end %>
             <hr>
-            <div style="overflow: auto;">
-              <table class="table table-hover table-sm table-responsive text-center w-100">
-                <th>
-                  <tr class="bg-dark text-white table-responsive-sm">
-                    <td>Serial Number</td>
-                    <td>Email</td>
-                    <td>State</td>
-                    <td>Date</td>
-                    <td>Action</td>
-                  </tr>
-                </th>
+            <div style="overflow-x: auto;">
+              <table class="table table-hover table-responsive table-sm text-center">
+                <thead>
+                <tr class="bg-dark text-white">
+                  <td>Serial Number</td>
+                  <td>Email</td>
+                  <td>State</td>
+                  <td>Date</td>
+                  <td>Action</td>
+                </tr>
+                </thead>
                 <% @winners.each do |winner| %>
                   <tbody>
                   <tr>

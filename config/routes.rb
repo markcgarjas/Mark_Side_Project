@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       resources :bets, only: :index do
         put 'cancel_bet', to: 'bets#cancel_bet'
       end
-      resources :winners do
+      resources :winners, only: :index do
         put 'submit_event', to: 'winners#submit_event'
         put 'pay_event', to: 'winners#pay_event'
         put 'ship_event', to: 'winners#ship_event'
