@@ -1,0 +1,30 @@
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <%= form_with model: member_level, url: path do |f| %>
+              <div class="form">
+                <%= f.label :level %>
+                <%= f.number_field :level, class: 'form-control'%>
+              </div>
+              <div class="form">
+                <%= f.label :required_members %>
+                <%= f.number_field :required_members, class: 'form-control' %>
+              </div>
+              <div class="form">
+                <%= f.label :coins %>
+                <%= f.number_field :coins, class: 'form-control' %>
+              </div>
+              <div>
+                <%= f.submit class: 'btn btn-warning mt-2' %>
+                <%= link_to 'Back', admins_member_levels_path, class: 'btn btn-dark mt-2' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

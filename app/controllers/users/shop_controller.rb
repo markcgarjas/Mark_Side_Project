@@ -17,6 +17,9 @@ class Users::ShopController < ApplicationController
     if @order.save
       flash[:notice] = "Order Successfully"
       redirect_to users_shop_index_path
+    else
+      flash[:notice] = @order.errors.full_messages.join(", ")
+      redirect_to users_shop_index_path
     end
   end
 

@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       resources :invites, only: :index
       resources :news_tickers
       resources :banners
+      resources :member_levels
     end
   end
 

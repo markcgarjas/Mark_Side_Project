@@ -1,0 +1,40 @@
+<h1 class="text-center">Member Level</h1>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <div>
+              <%= link_to 'Add New', new_admins_member_level_path, class: 'btn btn-warning mt-3' %>
+            </div>
+            <hr>
+            <div style="overflow: auto;">
+              <table class="table table-hover table-responsive text-center">
+                <th>
+                  <tr class="bg-dark text-white table-responsive-sm">
+                    <td>Level</td>
+                    <td>Required Member</td>
+                    <td>Coins</td>
+                    <td colspan="2">Actions</td>
+                  </tr>
+                </th>
+                <% @member_levels.each do |member_level| %>
+                  <tbody>
+                  <tr>
+                    <td><%= member_level.level %></td>
+                    <td><%= member_level.required_members %></td>
+                    <td><%= member_level.coins %></td>
+                    <td><%= link_to 'Edit', edit_admins_member_level_path(member_level), class: 'btn btn-outline-dark me-2' %></td>
+                    <td><%= button_to 'Delete', admins_member_level_path(member_level), class: 'btn btn-outline-dark me-2', onclick: "return confirm('Are you sure you want to delete?')", method: :delete %></td>
+                  </tr>
+                  </tbody>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

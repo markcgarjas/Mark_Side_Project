@@ -14,6 +14,8 @@
                   <%= link_to "Deduct", admins_user_new_path(genre: :deduct), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'deduct' %>
                   <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'bonus' %>
                   <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'bonus' %>
+                  <%= link_to "Member Level", admins_user_new_path(genre: :member_level), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'member_level' %>
+                  <%= link_to "Member Level", admins_user_new_path(genre: :member_level), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'member_level' %>
                 </div>
                 <hr>
                 <div class="form">
@@ -23,8 +25,10 @@
                       <%= form.text_field :coin, class: 'form-control' %>
                     </div>
                     <div class="input-group mb-3">
+                      <% unless params[:genre] == "member_level" %>
                       <span class="input-group-text" id="basic-addon3" style="width: auto">Remarks</span>
                       <%= form.text_field :remarks, class: 'form-control' %>
+                      <% end %>
                     </div>
                     <div class="input-group mb-3">
                       <%= form.submit "Order", class: 'btn btn-warning' %>

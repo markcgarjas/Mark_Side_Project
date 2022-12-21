@@ -15,10 +15,21 @@
       <div class="col-auto">
         <div class="card">
           <div class="card-body">
-            <div class="d-flex justify-content-center align-content-center">
-              <p>
-                <span><%= @url %></span>
-              </p>
+            <div class="justify-content-center align-content-center">
+              <div class="card">
+                <div class="card-body">
+                  <span><%= @url %></span>
+                </div>
+              </div>
+              <div class="card mt-1">
+                <div class="card-body text-center">
+                  <p><%= "You have #{@invited_members} invite/s" %></p>
+                  <% unless @next_level.nil? %>
+                    <p><%= "Share to #{@member_needs} friends" %><br>
+                      and get<br><%= "#{@coins} coin/s" %></p>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>

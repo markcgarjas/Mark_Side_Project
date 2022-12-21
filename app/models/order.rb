@@ -1,11 +1,12 @@
 class Order < ApplicationRecord
   include AASM
-  validates :remarks, presence: true
+  validates :coin, presence: true, numericality: { greater_than: 1 }
+  validates :remarks, presence: true, unless: [:member_level?, :deposit?]
   belongs_to :offer, optional: true
   belongs_to :user
   after_create :generate_serial_number
 
-  enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
+  enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4, member_level: 5 }
 
   aasm column: :state do
     state :pending, initial: true

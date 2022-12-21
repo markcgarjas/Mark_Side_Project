@@ -3,7 +3,15 @@ class Users::InvitePeopleController < ApplicationController
   before_action :invite_link
   before_action :generate_qrcode
 
-  def index; end
+  def index
+    @member_levels = MemberLevel.all
+    @invited_members = current_user.children_members
+    @next_level = MemberLevel.where("required_members > ? ", current_user.children_members).first
+    unless @next_level.nil?
+      @member_needs = @next_level.required_members - @invited_members
+    end
+    @coins = MemberLevel.where("required_members > ? ", current_user.children_members).first.coins
+  end
 
   private
 
