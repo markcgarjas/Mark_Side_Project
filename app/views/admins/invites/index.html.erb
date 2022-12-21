@@ -1,8 +1,10 @@
-<h1 class="text-center text-dark">Invite List</h1>
 <section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">Invite List</h1>
+        </div>
         <div class="card shadow-lg rounded-3">
           <div class="card-body bg-light">
             <%= form_tag({ url: admins_invites_path }, method: :get) do %>
@@ -15,10 +17,10 @@
                 <%= link_to "Reset", admins_invites_path, class: 'mx-2 btn btn-dark mt-2' %>
               </div>
             <% end %>
-            <div style="overflow: auto;">
-              <table class="table table-responsive text-center">
+            <div style="overflow-x: auto;">
+              <table class="table table-hover table-responsive text-center">
                 <thead>
-                <tr class="bg-dark text-light">
+                <tr class="bg-dark text-white">
                   <th>Parent Email</th>
                   <th>Email</th>
                   <th>Total Deposit</th>
