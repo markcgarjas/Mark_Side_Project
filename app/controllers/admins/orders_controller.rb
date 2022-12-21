@@ -11,6 +11,10 @@ class Admins::OrdersController < AdminController
     @orders = @orders.where(offer: { name: params[:name] }) if params[:name].present?
     @orders = @orders.where('orders.created_at >= ?', params[:created_at]) if params[:created_at].present?
     @orders = @orders.where('orders.created_at <= ?', params[:ended_at]) if params[:ended_at].present?
+    @total_amount = Order.sum(:amount)
+    @total_coin = Order.sum(:coin)
+    @subtotal_amount = @orders.sum(:amount)
+    @subtotal_coin = @orders.sum(:coin)
   end
 
   def new
@@ -27,7 +31,7 @@ class Admins::OrdersController < AdminController
         redirect_to admins_user_new_path
       else
         @order.cancel!
-        flash[:notice] = "You cant create"
+        flash[:notice] = @order.errors.full_messages.join(", ")
         redirect_to admins_user_new_path
       end
     else
@@ -42,7 +46,7 @@ class Admins::OrdersController < AdminController
       flash[:notice] = "Successfully Paid"
       redirect_to admins_orders_path
     else
-      flash[:notice] = "Error when Paid"
+      flash[:alert] = @order.errors.full_messages.join(", ")
       redirect_to admins_orders_path
     end
   end
@@ -53,7 +57,7 @@ class Admins::OrdersController < AdminController
       flash[:notice] = "Successfully Cancelled"
       redirect_to admins_orders_path
     else
-      flash[:notice] = "Error when cancel"
+      flash[:alert] = @order.errors.full_messages.join(", ")
       redirect_to admins_orders_path
     end
   end

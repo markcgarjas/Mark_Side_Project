@@ -1,8 +1,10 @@
-<h1 class="text-center text-dark">Orders</h1>
 <section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">Order List</h1>
+        </div>
         <div class="card shadow-lg rounded-3">
           <div class="card-body bg-light">
             <%= form_tag({ url: admins_orders_path }, method: :get) do %>
@@ -36,33 +38,35 @@
                   <%= date_field_tag :ended_at, params[:ended_at], class: 'form-control' %>
                 </div>
               </div>
-              <%= submit_tag :Search, class: 'btn btn-dark mt-2' %><%= link_to "Cancel", admins_orders_path, class: 'mx-2 btn btn-dark mt-2' %>
+              <%= submit_tag :Search, class: 'btn btn-dark mt-2' %>
+              <%= link_to "Reset", admins_orders_path, class: 'mx-2 btn btn-dark mt-2' %>
             <% end %>
             <hr>
             <div class="form-label">
-              <b>Total amounts: </b><%= Order.sum(:amount) %><br>
-              <b>Subtotal: </b><%= @orders.sum(:amount) %><br>
-            </div>
-            <div class="form-label">
-              <b>Total coins: </b><%= Order.sum(:coin) %><br>
-              <b>Subtotal: </b><%= @orders.sum(:coin) %><br>
+              <b>Total amounts: </b><%= @total_amount %><br>
+              <b>Subtotal: </b><%= @subtotal_amount %><br>
             </div>
             <hr>
-            <div style="overflow: auto;">
-              <table class="table table-responsive text-center w-100">
-                <th>
-                  <tr class="bg-dark text-white">
-                    <td>Serial Number</td>
-                    <td>Email</td>
-                    <td>Genre</td>
-                    <td>State</td>
-                    <td>Offer</td>
-                    <td>Amounts</td>
-                    <td>Coins</td>
-                    <td>Date</td>
-                    <td colspan="2">Action</td>
-                  </tr>
-                </th>
+            <div class="form-label">
+              <b>Total coins: </b><%= @total_coin %><br>
+              <b>Subtotal: </b><%= @subtotal_coin %><br>
+            </div>
+            <hr>
+            <div style="overflow-x: auto;">
+              <table class="table table-hover table table-responsive text-center">
+                <thead>
+                <tr class="bg-dark text-white">
+                  <td>Serial Number</td>
+                  <td>Email</td>
+                  <td>Genre</td>
+                  <td>State</td>
+                  <td>Offer</td>
+                  <td>Amounts</td>
+                  <td>Coins</td>
+                  <td>Date</td>
+                  <td colspan="2">Action</td>
+                </tr>
+                </thead>
                 <tbody>
                 <% @orders.each do |order| %>
                   <tr class="">

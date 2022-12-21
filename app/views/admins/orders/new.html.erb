@@ -7,15 +7,15 @@
           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
             <div class="card">
               <div class="card-body">
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                  <%= link_to "Increase", admins_user_new_path(genre: :increase), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'increase' %>
-                  <%= link_to "Increase", admins_user_new_path(genre: :increase), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'increase' %>
-                  <%= link_to "Deduct", admins_user_new_path(genre: :deduct), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'deduct' %>
-                  <%= link_to "Deduct", admins_user_new_path(genre: :deduct), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'deduct' %>
-                  <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'bonus' %>
-                  <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'bonus' %>
-                  <%= link_to "Member Level", admins_user_new_path(genre: :member_level), class: 'btn btn-sm btn-warning mx-2' if params[:genre] == 'member_level' %>
-                  <%= link_to "Member Level", admins_user_new_path(genre: :member_level), class: 'btn btn-sm btn-dark mx-2' unless params[:genre] == 'member_level' %>
+                <div class="button-group mb-3">
+                  <%= link_to "Increase", admins_user_new_path(genre: :increase), class: 'btn btn-sm btn-warning my-2' if params[:genre] == 'increase' %>
+                  <%= link_to "Increase", admins_user_new_path(genre: :increase), class: 'btn btn-sm btn-dark my-2' unless params[:genre] == 'increase' %>
+                  <%= link_to "Deduct", admins_user_new_path(genre: :deduct), class: 'btn btn-sm btn-warning my-2' if params[:genre] == 'deduct' %>
+                  <%= link_to "Deduct", admins_user_new_path(genre: :deduct), class: 'btn btn-sm btn-dark my-2' unless params[:genre] == 'deduct' %>
+                  <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-warning my-2' if params[:genre] == 'bonus' %>
+                  <%= link_to "Bonus", admins_user_new_path(genre: :bonus), class: 'btn btn-sm btn-dark my-2' unless params[:genre] == 'bonus' %>
+                  <%= link_to "Member Level", admins_user_new_path(genre: :member_level), class: 'btn btn-sm btn-warning' if params[:genre] == 'member_level' %>
+                  <%= link_to "Member Level", admins_user_new_path(genre: :member_level), class: 'btn btn-sm btn-dark' unless params[:genre] == 'member_level' %>
                 </div>
                 <hr>
                 <div class="form">
