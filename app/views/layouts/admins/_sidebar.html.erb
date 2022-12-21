@@ -1,29 +1,24 @@
 <div class="container-fluid">
   <div class="row flex-nowrap position-sticky">
-    <div class="col-3 col-sm-3 col-lg-3 col-xl-3 col-xxl-3 bg-dark ">
+    <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3 bg-dark ">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-5 pt-2 text-light min-vh-100" style="font-family: Arial,SansSerif,SansSerif">
         <ul class="list-unstyled ps-0 text-light">
-          <li class="mb-1">
-            <button class="btn btn-outline-light btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-              Homepage
-            </button>
-            <hr>
-          </li>
-          <li class="mb-2">
-            <button class="btn btn-toggle btn-dark align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          <li class="mb-2 mt-3">
+            <button class="btn btn-toggle btn-dark align-items-center d-flex collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
               Member Management
             </button>
-            <div class="collapse" id="dashboard-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><%= link_to "User List", admins_users_path %></li>
-                <li><%= link_to "Item List", admins_items_path %></li>
-                <li><%= link_to "Category List", admins_categories_path %></li>
-                <li><%= link_to "Bet List", admins_bets_path %></li>
-                <li><%= link_to "Winner List", admins_winners_path %></li>
-                <li><%= link_to "Offer List", admins_offers_path %></li>
-                <li><%= link_to "Order List", admins_orders_path %></li>
-                <li><%= link_to "Invite List", admins_invites_path %></li>
-                <li><%= link_to "Banner List", admins_banners_path %></li>
+            <div class="collapse mx-5" id="dashboard-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 mt-2 small">
+                <h5><%= link_to "User List", admins_users_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Item List", admins_items_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Category List", admins_categories_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Bet List", admins_bets_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Winner List", admins_winners_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Offer List", admins_offers_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Order List", admins_orders_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Invite List", admins_invites_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "News Ticker List", admins_news_tickers_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
+                <h5><%= link_to "Banner List", admins_banners_path, class: 'badge badge-warning btn btn-warning text-dark text-wrap' %></h5>
               </ul>
             </div>
           </li>
@@ -41,7 +36,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-9 col-sm-9 col-lg-9 col-xl-9 col-xxl-9 bg-white ">
+    <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 col-xxl-9 bg-white ">
       <div class="text-center m-2">
         <span class="badge alert alert-primary mx-1"><%= notice %><%= alert %></span>
       </div>

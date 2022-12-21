@@ -2,7 +2,7 @@ class Admins::UsersController < AdminController
   before_action :check_admin
 
   def index
-    @users = User.where(role: 0)
+    @users = User.includes(:bets).where(role: 0)
   end
 
   private

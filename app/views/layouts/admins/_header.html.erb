@@ -1,32 +1,30 @@
-<nav class="navbar navbar-expand-lg px-lg-5 bg-dark sticky-top border-bottom">
+<nav class="navbar navbar-expand-lg px-lg-5 navbar-dark bg-dark sticky-top border-bottom">
   <div class="container-fluid">
     <span class="navbar-brand text-light">Brand Image</span>
-    <div class="d-flex">
-      <div class="btn-group" role="group">
-        <div class="btn-group">
-          <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="d-none d-sm-inline mx-1">Change Language</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end bg-light">
-            <%= link_to "EN", params.permit!.merge(locale: 'en'), class: 'dropdown-item' %>
-            <%= link_to "zh-CN", params.permit!.merge(locale: 'zh-CN'), class: 'dropdown-item' %>
-            <%= link_to "tagalog", params.permit!.merge(locale: 'tg'), class: 'dropdown-item' %>
-          </ul>
-        </div>
-        <div class="btn-group">
+    <div class="btn-group" role="group">
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="d-none d-sm-inline mx-1">Change Language</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end bg-light">
+          <%= link_to "EN", params.permit!.merge(locale: 'en'), class: 'dropdown-item' %>
+          <%= link_to "zh-CN", params.permit!.merge(locale: 'zh-CN'), class: 'dropdown-item' %>
+          <%= link_to "tagalog", params.permit!.merge(locale: 'tg'), class: 'dropdown-item' %>
+        </ul>
+      </div>
+      <div class="btn-group">
+        <% if admins_user_signed_in? %>
+          <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <%= current_admins_user.username if admins_user_signed_in? %></button>
+        <% else %>
+          <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <%= "Login?" unless admins_user_signed_in? %></button>
+        <% end %>
+        <ul class="dropdown-menu dropdown-menu-end bg-light">
           <% if admins_user_signed_in? %>
-            <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <%= current_admins_user.username if admins_user_signed_in? %></button>
+            <%= button_to "Log Out", destroy_user_session_path, { onclick: "return confirm('Are you sure you want to delete?')", method: :delete, class: "dropdown-item" } %>
           <% else %>
-            <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"> <%= "Login?" unless admins_user_signed_in? %></button>
+            <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
           <% end %>
-          <ul class="dropdown-menu dropdown-menu-end bg-light">
-            <% if admins_user_signed_in? %>
-              <%= button_to "Log Out", destroy_user_session_path, { onclick: "return confirm('Are you sure you want to delete?')", method: :delete, class: "dropdown-item" } %>
-            <% else %>
-              <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
-            <% end %>
-          </ul>
-        </div>
+        </ul>
       </div>
     </div>
   </div>
