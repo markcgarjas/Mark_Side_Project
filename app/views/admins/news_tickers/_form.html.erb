@@ -1,27 +1,15 @@
-<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
-  <div class="container">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
-        <div class="card shadow-lg rounded-3">
-          <div class="card-body bg-light">
-            <%= form_with model: news_ticker, url: path do |f| %>
-              <div class="form">
-                <%= f.label :content, class: 'form-label' %><br>
-                <%= f.text_field :content, class: 'form-control' %>
-              </div>
-              <div class="form">
-                <%= f.label :status, class: 'form-label' %><br>
-                <%= f.select :status, options_for_select(NewsTicker.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
-              </div>
-              <hr>
-              <div>
-                <%= f.submit class: 'btn btn-warning' %>
-                <%= link_to 'Back', admins_news_tickers_path, class: 'btn btn-dark' %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+<%= form_with model: news_ticker, url: path do |f| %>
+  <div>
+    <%= f.submit class: 'btn btn-warning' %>
+    <%= link_to 'Back', admins_news_tickers_path, class: 'btn btn-dark' %>
   </div>
-</section>
+  <hr>
+  <div class="form">
+    <%= f.label :content, class: 'form-label' %><br>
+    <%= f.text_field :content, class: 'form-control' %>
+  </div>
+  <div class="form">
+    <%= f.label :status, class: 'form-label' %><br>
+    <%= f.select :status, options_for_select(NewsTicker.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+  </div>
+<% end %>
