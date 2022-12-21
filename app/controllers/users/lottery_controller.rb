@@ -5,6 +5,9 @@ class Users::LotteryController < ApplicationController
     @items = Item.where(status: :active, state: :starting)
     @items = @items.includes(:categories).where(categories: { name: params[:category] }) if params[:category]
     @categories = Category.all
+    @news_tickers = NewsTicker.active.limit(5)
+    @banners = Banner.where('online_at <= ? AND offline_at > ?', Time.current, Time.current)
+                     .active.limit(5)
   end
 
   def show
@@ -16,7 +19,7 @@ class Users::LotteryController < ApplicationController
     @progress_bars = (@progress_bars / @item.minimum_bets).to_f
     @progress_bars = (@progress_bars * 100).to_i
     @bet_count = @item.bets.where(batch_count: @item.batch_count).count
-    @percent =  [@progress_bars, 100].min
+    @percent = [@progress_bars, 100].min
   end
 
   def create

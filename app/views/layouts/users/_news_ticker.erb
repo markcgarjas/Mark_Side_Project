@@ -1,0 +1,9 @@
+<div>
+  <div class="mt-2 mb-2 bg-light rounded rounded-1" style="font-family: 'Arial Rounded MT Bold'">
+    <marquee width="80%" direction="left" scrollamount="12" height="20px">
+      <% @news_tickers.each do |news_ticker| %>
+        <%= news_ticker.content %>
+      <% end %>
+    </marquee>
+  </div>
+</div>

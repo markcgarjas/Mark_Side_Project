@@ -2,56 +2,8 @@
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
-        <div class="card shadow-lg rounded-3">
-          <div class="card-body bg-light">
-            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="2000">
-                  <%= image_tag "banner.jpeg", width: "1200", height: "250", alt: "koda" %>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <%= image_tag "hugo.png", width: "1200", height: "250", alt: "koda" %>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <%= image_tag "mar.png", width: "1200", height: "250", alt: "koda" %>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <%= image_tag "den.jpeg", width: "1200", height: "250", alt: "koda" %>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <%= image_tag "mj.png", width: "1200", height: "250", alt: "koda" %>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <%= image_tag "erwin.png", width: "1200", height: "250", alt: "koda" %>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                  <%= image_tag "bryn.png", width: "1200", height: "250", alt: "koda" %>
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="mt-2 bg-light rounded rounded-1" style="font-family: 'Arial Rounded MT Bold'">
-            <marquee width="80%" direction="left" scrollamount="12" height="20px">
-              Announcement!
-            </marquee>
-          </div>
-          <div class="rounded-1 mt-2 mb-1">
-            <ul class="nav nav-pills nav-justified">
-              <li class="nav-item">
-                <%= link_to "Button", '#', class: "nav-link text-dark bg-light active" %>
-              </li>
-            </ul>
-          </div>
+        <%= render "layouts/users/banner" %>
+        <%= render "layouts/users/news_ticker" %>
           <div class="mt-2">
             <%= link_to "All", users_lottery_index_path, class: "btn btn-dark btn-outline-light rounded rounded-5" %>
             <% @categories.each do |category| %>

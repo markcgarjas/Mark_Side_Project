@@ -4,6 +4,9 @@ class Users::ShopController < ApplicationController
   def index
     @offers = Offer.active
     @order = Order.new
+    @news_tickers = NewsTicker.active.limit(5)
+    @banners = Banner.where('online_at <= ? AND offline_at > ?', Time.current, Time.current)
+                     .active.limit(5)
   end
 
   def create
