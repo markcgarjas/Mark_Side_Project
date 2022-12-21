@@ -1,3 +1,17 @@
 <%= render 'layouts/admins/error_message', resource: @item %>
-<h1 class="text-center text-dark">Edit <%= @item.name %></h1>
-<%= render partial: 'form', locals: { item: @item, path: admins_item_path } %>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">Edit Item</h1>
+        </div>
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <%= render partial: 'form', locals: { item: @item, path: admins_item_path } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

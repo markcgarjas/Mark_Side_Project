@@ -16,7 +16,8 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "Create Successfully"
       redirect_to admins_items_path
     else
-      render :new
+      flash[:notice] = @item.errors.full_messages.join(", ")
+      redirect_to new_admins_item_path
     end
   end
 
@@ -30,7 +31,8 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "Update Successfully"
       redirect_to admins_items_path
     else
-      render :edit
+      flash[:notice] = @item.errors.full_messages.join(", ")
+      redirect_to edit_admins_item_path
     end
   end
 
@@ -39,7 +41,7 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "#{@item.name} Deleted"
       redirect_to admins_items_path
     else
-      flash[:notice] = " You cant delete #{@item.name}"
+      flash[:notice] = @item.errors.full_messages.join(", ")
       redirect_to admins_items_path
     end
   end
@@ -61,7 +63,7 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "#{@item.name} Ended! We have one lucky winner!"
       redirect_to admins_items_path
     else
-      flash[:notice] = "You cant end"
+      flash[:notice] = @item.errors.full_messages.join(", ")
       redirect_to admins_items_path
     end
   end
@@ -72,7 +74,7 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "#{@item.name} Paused"
       redirect_to admins_items_path
     else
-      flash[:notice] = "You cant pause"
+      flash[:notice] = @item.errors.full_messages.join(", ")
       redirect_to admins_items_path
     end
   end
@@ -83,7 +85,7 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "#{@item.name} Cancelled"
       redirect_to admins_items_path
     else
-      flash[:notice] = "You cant cancel"
+      flash[:notice] = @item.errors.full_messages.join(", ")
       redirect_to admins_items_path
     end
   end

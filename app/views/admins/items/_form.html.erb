@@ -1,55 +1,44 @@
-<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
-  <div class="container">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
-        <div class="card shadow-lg rounded-3">
-          <div class="card-body bg-light">
-            <%= form_with model: item, url: path do |f| %>
-              <div class="form">
-                <%= f.label :image, class: 'form-label' %><br>
-                <%= f.file_field :image, class: 'form-control' %>
-              </div>
-              <div class="form">
-                <%= f.label :name, class: 'form-label' %><br>
-                <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
-              </div>
-              <div class="form">
-                <%= f.label :quantity, class: 'form-label' %><br>
-                <%= f.number_field :quantity, class: 'form-control', placeholder: 'Quantity' %>
-              </div>
-              <div class="form">
-                <%= f.label :minimum_bets, class: 'form-label' %><br>
-                <%= f.number_field :minimum_bets, class: 'form-control', placeholder: 'Minimum Bets' %>
-              </div>
-              <div class="form">
-                <%= f.label :online_at, class: 'form-label' %><br>
-                <%= f.date_field :online_at, class: 'form-control', placeholder: 'Minimum Bets' %>
-              </div>
-              <div class="form">
-                <%= f.label :offline_at, class: 'form-label' %><br>
-                <%= f.date_field :offline_at, class: 'form-control', placeholder: 'Minimum Bets' %>
-              </div>
-              <div class="form">
-                <%= f.label :start_at, class: 'form-label' %><br>
-                <%= f.date_field :start_at, class: 'form-control', placeholder: 'Minimum Bets' %>
-              </div>
-              <div class="form">
-                <%= f.label :status, class: 'form-label' %><br>
-                <%= f.select :status, options_for_select(Item.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
-              </div>
-              <div class="form-check-outline mt-2">
-                <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, class: 'form-check-input', for: 'defaultCheck1' %>
-                <%= link_to 'Add Category', new_admins_category_path(@item), class: 'btn btn-warning' %>
-              </div>
-              <hr>
-              <div>
-                <%= f.submit class: 'btn btn-warning' %>
-                <%= link_to 'Back', admins_items_path, class: 'btn btn-dark' %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+<%= form_with model: item, url: path do |f| %>
+  <div>
+    <%= f.submit class: 'btn btn-warning' %>
+    <%= link_to 'Back', admins_items_path, class: 'btn btn-dark' %>
   </div>
-</section>
+  <hr>
+  <div class="form-check-outline border">
+    <%= f.label :categories, class: 'fs-5'%><br>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, class: 'form-check-input', for: 'defaultCheck1' %>
+  </div>
+  <hr>
+  <div class="form">
+    <%= f.label :image, class: 'form-label' %><br>
+    <%= f.file_field :image, class: 'form-control' %>
+  </div>
+  <div class="form">
+    <%= f.label :name, class: 'form-label' %><br>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+  </div>
+  <div class="form">
+    <%= f.label :quantity, class: 'form-label' %><br>
+    <%= f.number_field :quantity, class: 'form-control', placeholder: 'Quantity' %>
+  </div>
+  <div class="form">
+    <%= f.label :minimum_bets, class: 'form-label' %><br>
+    <%= f.number_field :minimum_bets, class: 'form-control', placeholder: 'Minimum Bets' %>
+  </div>
+  <div class="form">
+    <%= f.label :online_at, class: 'form-label' %><br>
+    <%= f.date_field :online_at, class: 'form-control', placeholder: 'Minimum Bets' %>
+  </div>
+  <div class="form">
+    <%= f.label :offline_at, class: 'form-label' %><br>
+    <%= f.date_field :offline_at, class: 'form-control', placeholder: 'Minimum Bets' %>
+  </div>
+  <div class="form">
+    <%= f.label :start_at, class: 'form-label' %><br>
+    <%= f.date_field :start_at, class: 'form-control', placeholder: 'Minimum Bets' %>
+  </div>
+  <div class="form">
+    <%= f.label :status, class: 'form-label' %><br>
+    <%= f.select :status, options_for_select(Item.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+  </div>
+<% end %>
