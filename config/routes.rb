@@ -39,7 +39,7 @@ Rails.application.routes.draw do
         put 'pause_event', to: 'items#pause_event'
       end
       resources :categories, except: :show
-      resources :bets do
+      resources :bets, only: :index do
         put 'cancel_bet', to: 'bets#cancel_bet'
       end
       resources :winners do

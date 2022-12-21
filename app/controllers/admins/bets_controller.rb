@@ -1,4 +1,6 @@
 class Admins::BetsController < AdminController
+  before_action :set_action, only: :cancel_bet
+
   def index
     @bets = Bet.includes(:user, :item).all
     @bets = @bets.where(serial_number: params[:serial_number]) if params[:serial_number].present?
@@ -10,9 +12,18 @@ class Admins::BetsController < AdminController
   end
 
   def cancel_bet
+    if @bet.cancel!
+      flash[:notice] = "#{@bet.serial_number} Cancelled"
+      redirect_to admins_bets_path
+    else
+      flash[:notice] = @bet.errors.full_messages.join(", ")
+      redirect_to admins_bets_path
+    end
+  end
+
+  private
+
+  def set_action
     @bet = Bet.find(params[:bet_id])
-    @bet.cancel!
-    flash[:notice] = "#{@bet.serial_number} Cancelled"
-    redirect_to admins_bets_path
   end
 end
