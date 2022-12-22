@@ -1,43 +1,49 @@
-<h1 class="text-center text-white"><%= "#{@item.name}" %></h1>
-<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5 mb-3">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
-        <div class="card shadow-lg rounded-3">
+      <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2"><%= "#{@item.name}" %></h1>
+        </div>
+        <div class="card shadow-lg rounded-3" style="border-radius: 0;">
           <div class="card-body bg-light">
-          </div>
-          <%= image_tag @item.image.url, height: "500", class: 'mx-auto d-block w-100' %>
-          <div class="m-2 border border-4">
-            <div class="p-1">
-              <p class="mt-2"><%= @item.name %></p>
-              <div class="progress">
-                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= @progress_bars %>%" aria-valuenow="<%= @progress_bars %>" aria-valuemin="0" aria-valuemax="<%= @progress_bars %>"></div>
+            <%= image_tag @item.image.url, height: "500", class: 'mx-auto d-block w-100' %>
+            <div class="m-2 border border-4">
+              <div class="p-1">
+                <p class="mt-2"><%= @item.name %></p>
+                <div class="progress">
+                  <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= @progress_bars %>%" aria-valuenow="<%= @progress_bars %>" aria-valuemin="0" aria-valuemax="<%= @progress_bars %>"></div>
+                </div>
+                <p class="mt-2"><%= @percent %>%</p>
+                <p class="mt-2"><%= @bet_count %>/<%= @item.minimum_bets %></p>
               </div>
-              <p class="mt-2"><%= @percent %>%</p>
-              <p class="mt-2"><%= @bet_count %>/<%= @item.minimum_bets %></p>
+            </div>
+            <div class="p-2">
+              <%= form_with model: @bet, url: users_lottery_index_path, method: :post do |f| %>
+                <%= f.number_field :coins, class: 'form-control text-center', value: 1 %>
+                <%= f.submit "Submit", class: 'form-control btn btn-warning my-2' %>
+                <%= f.hidden_field :item_id, class: 'form-control', value: params[:id] %>
+              <% end %>
             </div>
           </div>
-          <div class="p-2">
-            <%= form_with model: @bet, url: users_lottery_index_path, method: :post do |f| %>
-              <%= f.number_field :coins, class: 'form-control', value: 1 %>
-              <%= f.submit "Submit", class: 'form-control btn btn-warning my-2' %>
-              <%= f.hidden_field :item_id, class: 'form-control', value: params[:id] %>
-            <% end %>
+        </div>
+        <div class="card bg-light mt-3">
+          <div class="mt-1 p-2">
+            <div class="row d-flex">
+              <p class="text-center"><b>Serial Numbers</b></p>
+              <% if @owner_users.blank? %>
+                <p class="text-center">---None---</p>
+              <% end %>
+              <% @owner_users.each do |serial_number| %>
+                <div class="col-6">
+                  <p class="text-center"><%= serial_number.serial_number %></p>
+                </div>
+              <% end %>
+            </div>
           </div>
-          <div class="mt-1">
-            <p><b>Serial Number</b></p>
-            <% if @owner_users.blank? %>
-              <p>---None---</p>
-            <% end %>
-            <% @owner_users.each do |serial_number| %>
-              <p><%= serial_number.serial_number %></p>
-            <% end %>
-          </div>
-          <div class="mt-5">.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<div class="mt-5">.</div>
 <%= render 'layouts/users/footer_lottery' %>

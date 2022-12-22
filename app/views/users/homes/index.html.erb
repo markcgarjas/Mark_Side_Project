@@ -1,15 +1,14 @@
-<section>
+<section class="mb-3">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
         <%= render "layouts/users/banner" %>
         <%= render "layouts/users/news_ticker" %>
-        </div>
         <div>
-          <div class="m-3">
+          <div class="mt-3">
             <%= link_to "Winners Feedback", users_share_index_path, class: "btn btn-dark btn-outline-light" %>
           </div>
-          <div class="mt-3 container">
+          <div class="mt-3">
             <div class="row">
               <% @winners.each do |winner| %>
                 <div class="col">
@@ -33,18 +32,16 @@
               </div>
             </div>
           </div>
-          <div class="m-3">
+          <div class="mt-3">
             <%= link_to "Coming Soon", users_lottery_index_path, class: "btn btn-dark btn-outline-light" %>
           </div>
-          <div class="mt-3 container">
+          <div class="mt-3">
             <div class="row">
               <% @items.each do |item| %>
                 <div class="col">
                   <div class="card mb-2">
                     <div class="card-body">
-                      <div class="container">
-                        <%= link_to (image_tag item.image.url, height: "85", class: 'mx-auto d-block w-100'), users_lottery_path(item) %>
-                      </div>
+                      <%= link_to (image_tag item.image.url, height: "85", class: 'mx-auto d-block w-100'), users_lottery_path(item) %>
                     </div>
                   </div>
                 </div>

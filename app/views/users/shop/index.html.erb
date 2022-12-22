@@ -1,4 +1,4 @@
-<section>
+<section class="mb-3">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
@@ -8,19 +8,19 @@
           <div class="row d-flex">
             <% @offers.each do |offer| %>
               <div class="col-6">
-                <div class="card mb-2">
+                <div class="card mb-2" style="border-radius: 0;">
                   <div class="card-body">
                     <div class="container">
                       <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<%= offer.id %>">
                         <%= image_tag offer.image.url, height: "270", class: 'mx-auto d-block w-100' %>
-                        <div class="text-center"><%= offer.name %></div>
+                        <div class="text-center"></div>
                       </button>
                     </div>
-                    <div class="modal fade" id="exampleModal<%= offer.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade mt-5 pt-5" id="exampleModal<%= offer.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id=<%= offer.name %>></h5>
+                            <h5 class="modal-title"><%= offer.name %></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body text-center">

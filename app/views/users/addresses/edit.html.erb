@@ -1,4 +1,19 @@
-<%= render "users/shared/error_messages", resource: @address %>
-<h1 class="text-center text-white">Edit Address</h1>
-<%= render partial: 'form', locals: { address: @address, path: users_profile_address_path } %>
+<div data-controller='location'>
+  <section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5 mb-3">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+          <div class="card-header">
+            <h1 class="text-center border bg-warning p-2">Edit Address</h1>
+          </div>
+          <div class="card shadow-lg rounded-3">
+            <div class="card-body bg-light">
+              <%= render partial: 'form', locals: { address: @address, path: users_profile_address_path } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 <%= render 'layouts/users/footer_profile' %>

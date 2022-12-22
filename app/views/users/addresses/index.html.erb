@@ -1,17 +1,19 @@
-<h1 class="text-center text-white">My Address</h1>
-<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5 mb-3">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">My Address</h1>
+        </div>
         <div class="card shadow-lg rounded-3">
           <div class="card-body bg-light">
-            <%= link_to "New Address", new_users_profile_address_path, class: 'btn btn btn-dark btn-outline-white mb-2' %>
+            <%= link_to "New Address", new_users_profile_address_path, class: 'btn btn btn-warning btn-outline-white mb-2' %>
             <%= link_to "Back", users_profile_path, class: 'btn btn btn-dark btn-outline-white mb-2' %>
             <hr>
             <div style="overflow-x: auto;">
-              <table class="table table-responsive">
+              <table class="table table-hover table-responsive text-center">
                 <thead>
-                <tr>
+                <tr class="bg-dark text-white">
                   <td>Name</td>
                   <td>Genre</td>
                   <td>Address</td>
@@ -32,7 +34,7 @@
                     <td><%= "#{address.street}" %></td>
                     <td><%= "#{address.phone}" %></td>
                     <td><%= "#{address.region&.name} #{address.province&.name}, #{address.city_municipality&.name}, #{address.barangay&.name}" %></td>
-                    <td><%= link_to "Edit", edit_users_profile_address_path(address), class: 'btn btn btn-dark btn-outline-white me-2' %></td>
+                    <td><%= link_to "Edit", edit_users_profile_address_path(address), class: 'btn btn btn-warning btn-outline-white me-2' %></td>
                     <td><%= button_to "Delete", users_profile_address_path(address), class: 'btn btn btn-dark btn-outline-white me-2', onclick: "return confirm('Are you sure you want to delete?')", method: :delete %></td>
                   </tbody>
                   </tr>

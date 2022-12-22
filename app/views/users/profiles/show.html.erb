@@ -1,8 +1,10 @@
-<h1 class="text-center text-white">My Profile</h1>
-<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5 mb-3">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-sm-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+      <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">My Profile</h1>
+        </div>
         <div class="card shadow-lg rounded-3">
           <div class="card-body bg-light">
             <p class="text-center">
@@ -87,8 +89,6 @@
             <% unless @profile.present? || @orders.present? || @invitations.present? || @winners.present? || @lotteries.present? %>
               <h1 class="text-center">No History</h1>
             <% end %>
-            <div class="mt-lg-5 text-white">.</div>
-            <div class="mt-lg-2 text-white">.</div>
           </div>
         </div>
       </div>

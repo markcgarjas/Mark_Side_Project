@@ -9,13 +9,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-  <body style="font-family: system-ui;" class="bg-dark vh-100">
-    <div class="vw-100">
+  <body style="font-family: system-ui;" class="bg-dark">
+    <div class="">
       <%= render 'layouts/users/header' %>
     </div>
-    <div class="vh-100 bg-dark mt-2">
+    <div class="bg-dark mb-5 pb-5">
       <div class="text-center">
-        <span class="badge alert alert-primary mx-1"><%= notice %><%= alert %></span>
+        <span class="badge alert alert-primary mt-3"><%= notice %><%= alert %></span>
       </div>
       <%= yield %>
     </div>
