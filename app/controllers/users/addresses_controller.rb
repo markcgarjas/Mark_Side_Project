@@ -18,7 +18,8 @@ class Users::AddressesController < ApplicationController
       flash[:notice] = "Address was created successfully."
       redirect_to users_profile_addresses_path
     else
-      render :new
+      flash[:alert] = @address.errors.full_messages.join(", ")
+      redirect_to new_users_profile_address_path
     end
   end
 
@@ -31,14 +32,19 @@ class Users::AddressesController < ApplicationController
       flash[:notice] = "Address was updated successfully."
       redirect_to users_profile_addresses_path
     else
-      render :edit
+      flash[:alert] = @address.errors.full_messages.join(", ")
+      redirect_to new_users_profile_address_path
     end
   end
 
   def destroy
-    @address.destroy
-    flash[:notice] = "Address was deleted successfully."
-    redirect_to users_profile_addresses_path
+    if @address.destroy
+      flash[:notice] = "Address was deleted successfully."
+      redirect_to users_profile_addresses_path
+    else
+      flash[:alert] = @address.errors.full_messages.join(", ")
+      redirect_to new_users_profile_address_path
+    end
   end
 
   private

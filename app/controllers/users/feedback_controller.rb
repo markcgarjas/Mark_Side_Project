@@ -1,20 +1,19 @@
 class Users::FeedbackController < ApplicationController
   def show
-    @user = current_user
-    @winner = Winner.includes(:item, :bet, :address).where(user: @user).find(params[:id])
-    @addresses = Address.where(user: @user)
+    @winner = Winner.includes(:item, :bet, :address).where(user: current_user).find(params[:id])
+    @addresses = Address.where(user: current_user)
   end
 
   def update
-    @user = current_user
-    @winner = Winner.where(user: @user).find(params[:id])
+    @winner = Winner.where(user: current_user).find(params[:id])
     if @winner.update(winner_params)
       @winner.share!
       @winner.save
       flash[:notice] = "#{@winner.item.name} successfully Feedback"
       redirect_to users_profile_path(winner: :winners)
     else
-      render :show
+      flash[:alert] = @winner.errors.full_messages.join(", ")
+      redirect_to users_feedback_path
     end
   end
 

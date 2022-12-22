@@ -36,7 +36,7 @@ class Users::LotteryController < ApplicationController
     flash[:notice] = "Created Successfully"
     redirect_to users_lottery_index_path
   rescue ActiveRecord::RecordInvalid => invalid
-    flash[:notice] = invalid
+    flash[:alert] = invalid
     redirect_to users_lottery_index_path
   end
 

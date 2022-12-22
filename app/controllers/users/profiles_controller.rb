@@ -14,7 +14,7 @@ class Users::ProfilesController < ApplicationController
       flash[:notice] = "Successfully Cancelled"
       redirect_to users_profile_path(order: :orders)
     else
-      flash[:notice] = "Error when cancel"
+      flash[:alert] = @order.errors.full_messages.join(", ")
       redirect_to users_profile_path(order: :orders)
     end
   end

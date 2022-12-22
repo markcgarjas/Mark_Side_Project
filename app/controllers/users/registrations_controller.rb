@@ -46,10 +46,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_user_with_password
     if @user.update_with_password(user_with_password_params)
-      flash[:notice] = "Updated password! Login Again!"
-      redirect_to new_user_session_path
+      flash[:notice] = "Updated profile"
+      redirect_to users_profile_path
     else
-      render :edit
+      flash[:alert] = @user.errors.full_messages.join(", ")
+      redirect_to edit_user_registration_path
     end
   end
 
@@ -58,7 +59,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Updated profile"
       redirect_to users_profile_path
     else
-      render :edit
+      flash[:alert] = @user.errors.full_messages.join(", ")
+      redirect_to edit_user_registration_path
     end
   end
 
