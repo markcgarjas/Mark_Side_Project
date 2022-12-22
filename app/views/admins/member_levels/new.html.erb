@@ -1,3 +1,16 @@
-<%= render 'layouts/admins/error_message', resource: @member_level %>
-<h1 class="text-center text-dark">Add Members level</h1>
-<%= render partial: 'form', locals: { member_level: @member_level, path: admins_member_levels_path } %>
+<section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-sm-12 col-md-12 col-lg-11 col-xl-10 col-xxl-9">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">Add New Member Level</h1>
+        </div>
+        <div class="card shadow-lg rounded-3">
+          <div class="card-body bg-light">
+            <%= render partial: 'form', locals: { member_level: @member_level, path: admins_member_levels_path } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
