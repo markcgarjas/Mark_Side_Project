@@ -1,28 +1,34 @@
-<h1 class="text-center text-dark">Banner List</h1>
 <section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+      <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7">
+        <div class="card-header">
+          <h1 class="text-center border bg-warning p-2">Banner List</h1>
+        </div>
         <div class="card shadow-lg rounded-3">
           <div class="card-body bg-light">
             <div>
               <%= link_to "Add Banner", new_admins_banner_path, class: "btn btn-warning" %>
             </div>
             <hr>
-            <div style="overflow: auto;">
+            <div style="overflow-x: auto;">
               <table class="table table-hover table-responsive text-center">
-                <th>
-                  <tr class="bg-dark text-white table-responsive-sm">
+                <thead>
+                <tr class="bg-dark text-white">
                     <td>Image</td>
                     <td>Status</td>
+                    <td>Online at</td>
+                    <td>Offline at</td>
                     <td colspan="2">Actions</td>
                   </tr>
-                </th>
+                </thead>
                 <% @banners.each do |banner| %>
                   <tbody>
                   <tr>
                     <td><%= image_tag "#{banner.preview.url}", width: "100", height: "100" %></td>
                     <td><%= banner.status %></td>
+                    <td><%= banner.online_at %></td>
+                    <td><%= banner.offline_at %></td>
                     <td><%= button_to 'Delete', admins_banner_path(banner), class: 'btn btn-outline-dark me-2', onclick: "return confirm('Are you sure you want to delete?')", method: :delete %></td>
                     <td><%= link_to 'Edit', edit_admins_banner_path(banner), class: 'btn btn-outline-dark me-2' %></td>
                   </tr>
