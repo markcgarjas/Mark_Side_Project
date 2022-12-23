@@ -9,9 +9,15 @@ class Admins::SessionsController < Devise::SessionsController
   end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.find_by_email(params[:admins_user][:email])
+    if @user&.client? && @user&.valid_password?(params[:admins_user][:password])
+      flash[:alert] = "Invalid Email or password."
+      redirect_to new_user_session_path
+    else
+      super
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
