@@ -9,8 +9,8 @@ class Users::InvitePeopleController < ApplicationController
     @next_level = MemberLevel.where("required_members > ? ", current_user.children_members).first
     unless @next_level.nil?
       @member_needs = @next_level.required_members - @invited_members
+      @coins = MemberLevel.where("required_members > ? ", current_user.children_members).first.coins
     end
-    @coins = MemberLevel.where("required_members > ? ", current_user.children_members).first.coins
   end
 
   private

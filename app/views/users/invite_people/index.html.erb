@@ -30,6 +30,9 @@
                     <p><%= "Share to #{@member_needs} friends" %><br>
                       and get<br><%= "#{@coins} coin/s" %></p>
                   <% end %>
+                  <% if @next_level.nil? %>
+                    <p>You are already at the max level!</p>
+                  <% end %>
                 </div>
               </div>
             </div>
