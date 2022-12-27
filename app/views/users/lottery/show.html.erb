@@ -1,13 +1,13 @@
 <section class="mt-5 mt-sm-5 mt-md-5 mt-lg-5 mt-xl-5 mt-xxl-5 mb-3">
   <div class="container">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7">
+      <div class="col-sm-9 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
         <div class="card-header">
           <h1 class="text-center border bg-warning p-2"><%= "#{@item.name}" %></h1>
         </div>
         <div class="card shadow-lg rounded-3" style="border-radius: 0;">
           <div class="card-body bg-light">
-            <%= image_tag @item.image.url, height: "500", class: 'mx-auto d-block w-100' %>
+            <%= image_tag @item.image.url, height: "400", class: 'mx-auto d-block w-100' %>
             <div class="m-2 border border-4">
               <div class="p-1">
                 <p class="mt-2"><%= @item.name %></p>
@@ -18,11 +18,24 @@
                 <p class="mt-2"><%= @bet_count %>/<%= @item.minimum_bets %></p>
               </div>
             </div>
-            <div class="p-2">
+
+            <div class="p-2 w-75 mx-auto justify-content-center align-content-center">
               <%= form_with model: @bet, url: users_lottery_index_path, method: :post do |f| %>
-                <%= f.number_field :coins, class: 'form-control text-center', value: 1 %>
-                <%= f.submit "Submit", class: 'form-control btn btn-warning my-2' %>
-                <%= f.hidden_field :item_id, class: 'form-control', value: params[:id] %>
+                <div data-controller="button">
+                  <div class="input-group mx-auto w-75 mb-2 d-flex justify-content-center align-content-center">
+                    <button type="button" data-action="click->button#betPlus" data-value="1" class="btn btn-warning mx-2">1</button>
+                    <button type="button" data-action="click->button#betPlus" data-value="5" class="btn btn-warning mx-2">5</button>
+                    <button type="button" data-action="click->button#betPlus" data-value="10" class="btn btn-warning mx-2">10</button>
+                    <button type="button" data-action="click->button#betPlus" data-value="20" class="btn btn-warning mx-2">20</button>
+                  </div>
+                  <div class="input-group">
+                    <button type="button" data-action="click->button#betMinus" data-value="1" class="bi bi-dash-circle btn btn-warning"></button>
+                    <%= f.number_field :coins, class: 'form-control text-center', value: 1, data: { button_target: 'coins' } %>
+                    <button type="button" data-action="click->button#betPlus" data-value="1" class="bi bi-plus-circle btn btn-warning"></button>
+                  </div>
+                  <%= f.submit "Submit", class: 'form-control btn btn-warning my-2' %>
+                  <%= f.hidden_field :item_id, class: 'form-control', value: params[:id] %>
+                </div>
               <% end %>
             </div>
           </div>

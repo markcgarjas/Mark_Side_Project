@@ -37,7 +37,7 @@ class Users::LotteryController < ApplicationController
     redirect_to users_lottery_index_path
   rescue ActiveRecord::RecordInvalid => invalid
     flash[:alert] = invalid
-    redirect_to users_lottery_index_path
+    redirect_to users_shop_index_path
   end
 
   private
