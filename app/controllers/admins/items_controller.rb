@@ -4,6 +4,38 @@ class Admins::ItemsController < AdminController
 
   def index
     @items = Item.includes(:categories).all
+    respond_to do |format|
+      format.html
+      format.csv {
+        csv_strings = CSV.generate do |csv|
+          csv << [Item.human_attribute_name(:image),
+                  Item.human_attribute_name(:name),
+                  Item.human_attribute_name(:quantity),
+                  Item.human_attribute_name(:minimum_bets),
+                  Item.human_attribute_name(:state),
+                  Item.human_attribute_name(:batch_count),
+                  Item.human_attribute_name(:online_at),
+                  Item.human_attribute_name(:offline_at),
+                  Item.human_attribute_name(:start_at),
+                  Item.human_attribute_name(:status),
+                  Item.human_attribute_name(:categories)]
+          @items.each do |item|
+            csv << [item.image.url,
+                    item.name,
+                    item.quantity,
+                    item.minimum_bets,
+                    item.state,
+                    item.batch_count,
+                    item.online_at,
+                    item.offline_at,
+                    item.start_at,
+                    item.status,
+                    item.categories.pluck(:name).join(', ')]
+          end
+        end
+        send_data csv_strings, :filename => "Item Lists-#{Time.current.to_s}.csv"
+      }
+    end
   end
 
   def new

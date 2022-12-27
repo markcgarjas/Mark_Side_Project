@@ -15,6 +15,33 @@ class Admins::OrdersController < AdminController
     @total_coin = Order.sum(:coin)
     @subtotal_amount = @orders.sum(:amount)
     @subtotal_coin = @orders.sum(:coin)
+    respond_to do |format|
+      format.html
+      format.csv {
+        csv_string = CSV.generate do |csv|
+          csv << [Order.human_attribute_name(:serial_number),
+                  Order.human_attribute_name(:email),
+                  Order.human_attribute_name(:genre),
+                  Order.human_attribute_name(:state),
+                  Order.human_attribute_name(:offer_name),
+                  Order.human_attribute_name(:amount),
+                  Order.human_attribute_name(:coins),
+                  Order.human_attribute_name(:created_at),
+          ]
+          @orders.each do |order|
+            csv << [order.serial_number,
+                    order.user.email,
+                    order.genre,
+                    order.state,
+                    order.offer&.name,
+                    order.amount,
+                    order.coin,
+                    order.created_at]
+          end
+        end
+        send_data csv_string, :filename => "Order Lists-#{Time.current.to_s}.csv"
+      }
+    end
   end
 
   def new

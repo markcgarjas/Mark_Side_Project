@@ -9,6 +9,24 @@ class Admins::WinnersController < AdminController
     @winners = @winners.where(state: params[:state]) if params[:state].present?
     @winners = @winners.where('winners.created_at >= ?', params[:created_at]) if params[:created_at].present?
     @winners = @winners.where('winners.created_at <= ?', params[:ended_at]) if params[:ended_at].present?
+    respond_to do |format|
+      format.html
+      format.csv {
+        csv_strings = CSV.generate do |csv|
+          csv << [Winner.human_attribute_name(:serial_number),
+                  Winner.human_attribute_name(:email),
+                  Winner.human_attribute_name(:state),
+                  Winner.human_attribute_name(:date)]
+          @winners.each do |winner|
+            csv << [winner.bet.serial_number,
+                    winner.user.email,
+                    winner.state,
+                    winner.created_at]
+          end
+        end
+        send_data csv_strings, :filename => "Winner Lists-#{Time.current.to_s}.csv"
+      }
+    end
   end
 
   def submit_event
