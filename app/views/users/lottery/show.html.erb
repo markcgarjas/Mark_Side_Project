@@ -33,7 +33,7 @@
                     <%= f.number_field :coins, class: 'form-control text-center', value: 1, data: { button_target: 'coins' } %>
                     <button type="button" data-action="click->button#betPlus" data-value="1" class="bi bi-plus-circle btn btn-warning"></button>
                   </div>
-                  <%= f.submit "Submit", class: 'form-control btn btn-warning my-2' %>
+                  <%= f.submit t("submit"), class: 'form-control btn btn-warning my-2' %>
                   <%= f.hidden_field :item_id, class: 'form-control', value: params[:id] %>
                 </div>
               <% end %>

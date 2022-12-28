@@ -15,7 +15,7 @@ class Users::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.user = current_user
     if @address.save
-      flash[:notice] = "Address was created successfully."
+      flash[:notice] = t("create_successfully")
       redirect_to users_profile_addresses_path
     else
       flash[:alert] = @address.errors.full_messages.join(", ")
@@ -29,7 +29,7 @@ class Users::AddressesController < ApplicationController
     @address.update(address_params)
     @address.user = current_user
     if @address.save
-      flash[:notice] = "Address was updated successfully."
+      flash[:notice] = t("update_successfully")
       redirect_to users_profile_addresses_path
     else
       flash[:alert] = @address.errors.full_messages.join(", ")
@@ -39,7 +39,7 @@ class Users::AddressesController < ApplicationController
 
   def destroy
     if @address.destroy
-      flash[:notice] = "Address was deleted successfully."
+      flash[:notice] = t("delete_successfully")
       redirect_to users_profile_addresses_path
     else
       flash[:alert] = @address.errors.full_messages.join(", ")

@@ -33,7 +33,7 @@ class Users::LotteryController < ApplicationController
       @bet.batch_count = @item.batch_count
       @bet.save!
     }
-    flash[:notice] = "Created Successfully"
+    flash[:notice] = t("create_successfully")
     redirect_to users_lottery_index_path
   rescue ActiveRecord::RecordInvalid => invalid
     flash[:alert] = invalid

@@ -11,7 +11,7 @@ class Users::ProfilesController < ApplicationController
     @order = current_user.orders.find(params[:id])
     if @order.may_cancel?
       @order.cancel!
-      flash[:notice] = "Successfully Cancelled"
+      flash[:notice] = t("cancel_successfully")
       redirect_to users_profile_path(order: :orders)
     else
       flash[:alert] = @order.errors.full_messages.join(", ")

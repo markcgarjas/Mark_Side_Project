@@ -11,7 +11,11 @@
   </head>
   <body class="" style="font-family: Arial, 'Roboto Light', SansSerif">
     <div class="mt-5">
-    <%= yield %>
+      <div class="text-center">
+        <span class="badge alert alert-primary mt-3"><%= notice %></span>
+        <span class="badge alert alert-danger mt-3"><%= alert %></span>
+      </div>
+      <%= yield %>
     </div>
   </body>
 </html>

@@ -1,0 +1,41 @@
+tg:
+  activerecord:
+    errors:
+      models:
+        errors:
+          messages:
+            record_invalid: Wala kanang coins!
+        user:
+          attributes:
+            email:
+              blank: ay hindi pwedeng blanko
+              taken: ay nakuha na
+            password:
+              blank: ay hindi pwedeng blanko
+              too_short: ay maikli
+            password_confirmation:
+              blank: ay hindi pwedeng blanko
+              confirmation: ay hindi tugma
+            current_password:
+              blank: ay hindi pwedeng blanko
+              invalid: ay hindi tugma
+            phone:
+              invalid: ay mali
+        address:
+          attributes:
+            region:
+              required: ay kailangan
+            province:
+              required: ay kailangan
+            city_municipality:
+              required: ay kailangan
+            barangay:
+              required: ay kailangan
+            genre:
+              blank: ay kailangan
+            name:
+              blank: hindi pwedeng blanko
+            street:
+              blank: hindi pwedeng blanko
+            phone:
+              invalid: ay mali

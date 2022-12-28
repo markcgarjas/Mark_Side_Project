@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     @user = User.find_by_email(params[:user][:email])
     if @user&.admin? && @user&.valid_password?(params[:user][:password])
-      flash[:alert] = "Invalid Email or password."
+      flash[:alert] = t("invalid")
       redirect_to new_user_session_path
     else
       super

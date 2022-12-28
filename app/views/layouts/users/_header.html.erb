@@ -9,12 +9,11 @@
         <% end %>
         <div class="btn-group">
           <button type="button" class="btn btn-outline-light btn-floating m-1 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="d-none d-sm-inline mx-1">Change Language</span>
+            <span class="d-none d-sm-inline mx-1"><%= t("change_language") %></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end bg-light">
-            <%= link_to "EN", params.permit!.merge(locale: 'en'), class: 'dropdown-item' %>
-            <%= link_to "zh-CN", params.permit!.merge(locale: 'zh-CN'), class: 'dropdown-item' %>
-            <%= link_to "tagalog", params.permit!.merge(locale: 'tg'), class: 'dropdown-item' %>
+            <%= link_to "EN", params.permit!.merge(locale: :en), class: 'dropdown-item' %>
+            <%= link_to "Tagalog", params.permit!.merge(locale: :tg), class: 'dropdown-item' %>
           </ul>
         </div>
         <div class="btn-group">

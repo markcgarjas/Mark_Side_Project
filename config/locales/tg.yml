@@ -1,0 +1,31 @@
+tg:
+  errors:
+    messages:
+      extension_allowlist_error: Hindi tinatanggap ang iyong larawan
+  change_language: Baguhin ang wika
+  winners_feedback: Puna ng mga nanalo
+  coming_soon: Malapit na
+  more: Higit pa
+  share: Pabalato
+  invite: Anyayahan
+  invite_friends: Mag-imbita ng mga kaibigan
+  lottery: Lotterya
+  shop: Tindahan
+  me: Ako
+  login: Mag-log in
+  register: Mag register
+  share_comments: Magbahagi ng mga komento
+  amount: Halaga
+  my_profile: Aking Profile
+  edit: I-edit
+  profile_update: I-edit ang Impormasyon sa Pakikipag-ugnayan
+  change_password: Palitan ang Password?
+  my_address: Aking Address
+  create_successfully: Matagumpay na lumikha
+  update_successfully: Matagumpay na na-update
+  delete_successfully: Matagumpay na tanggalin
+  cancel_successfully: Matagumpay na kanselahin
+  invalid: Hindi tugma ang iyong Email o password.
+  submit: Mag-bet!
+  order: Mag-order!
+  close: Isara

@@ -1,0 +1,40 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: can't be blank
+              taken: already taken
+            password:
+              blank: can't be blank
+              too_short: too short
+            password_confirmation:
+              blank: can't be blank
+              confirmation: doesn't match
+            current_password:
+              blank: can't be blank
+              invalid: is invalid
+            phone:
+              invalid: is invalid
+        address:
+          attributes:
+            region:
+              required: is required
+            province:
+              required: is required
+            city_municipality:
+              required: is required
+            barangay:
+              required: is required
+            genre:
+              blank: can't be blank
+            name:
+              blank: can't be blank
+            street:
+              blank: can't be blank
+            phone:
+              invalid: is invalid
+          messages:
+            record_invalid: You dont have enough coins!

@@ -9,7 +9,7 @@ class Users::FeedbackController < ApplicationController
     if @winner.update(winner_params)
       @winner.share!
       @winner.save
-      flash[:notice] = "#{@winner.item.name} successfully Feedback"
+      flash[:notice] = t("update_successfully")
       redirect_to users_profile_path(winner: :winners)
     else
       flash[:alert] = @winner.errors.full_messages.join(", ")

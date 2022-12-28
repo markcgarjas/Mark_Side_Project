@@ -18,7 +18,7 @@ class Users::ShopController < ApplicationController
     @order.amount = @offer.amount
     @order.state = :submitted
     if @order.save
-      flash[:notice] = "Order Successfully"
+      flash[:notice] = t("create_successfully")
       redirect_to users_shop_index_path
     else
       flash[:alert] = @order.errors.full_messages.join(", ")

@@ -46,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_user_with_password
     if @user.update_with_password(user_with_password_params)
-      flash[:notice] = "Updated profile"
+      flash[:notice] = t("update_successfully")
       redirect_to users_profile_path
     else
       flash[:alert] = @user.errors.full_messages.join(", ")
@@ -56,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update_user
     if @user.update(user_params)
-      flash[:notice] = "Updated profile"
+      flash[:notice] = t("update_successfully")
       redirect_to users_profile_path
     else
       flash[:alert] = @user.errors.full_messages.join(", ")
