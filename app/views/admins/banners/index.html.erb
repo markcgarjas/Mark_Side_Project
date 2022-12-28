@@ -15,16 +15,18 @@
               <table class="table table-hover table-responsive text-center">
                 <thead>
                 <tr class="bg-dark text-white">
-                    <td>Image</td>
-                    <td>Status</td>
-                    <td>Online at</td>
-                    <td>Offline at</td>
-                    <td colspan="2">Actions</td>
-                  </tr>
+                  <td class="bi bi-hash"></td>
+                  <td>Image</td>
+                  <td>Status</td>
+                  <td>Online at</td>
+                  <td>Offline at</td>
+                  <td colspan="2">Actions</td>
+                </tr>
                 </thead>
                 <% @banners.each do |banner| %>
                   <tbody>
                   <tr>
+                    <td><%= banner.sort %></td>
                     <td><%= image_tag "#{banner.preview.url}", width: "100", height: "100" %></td>
                     <td><%= banner.status %></td>
                     <td><%= banner.online_at %></td>

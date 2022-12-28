@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_080810) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_28_030814) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -83,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_080810) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sort"
   end
 
   create_table "bets", charset: "utf8mb4", force: :cascade do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_080810) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sort"
   end
 
   create_table "item_category_ships", charset: "utf8mb4", force: :cascade do |t|
@@ -146,6 +148,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_080810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer "sort"
     t.index ["admin_id"], name: "index_news_tickers_on_admin_id"
   end
 

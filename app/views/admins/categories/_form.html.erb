@@ -4,6 +4,10 @@
     <%= link_to "Back", admins_categories_path, class: 'btn btn-dark' %>
   </div>
   <hr>
+  <div class="form">
+    <%= form.label :number, class: 'form-label' %><br>
+    <%= form.number_field :sort, class: 'form-control' %>
+  </div>
   <%= form.label :name, class: 'form-label' %><br>
   <%= form.text_field :name, class: 'form-control' %><br>
 <% end %>

@@ -47,7 +47,7 @@ class Admins::NewsTickersController < AdminController
   private
 
   def news_ticker_params
-    params.require(:news_ticker).permit(:content, :status)
+    params.require(:news_ticker).permit(:content, :status, :sort)
   end
 
   def set_news_ticker

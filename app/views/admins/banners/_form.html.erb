@@ -5,6 +5,10 @@
   </div>
   <hr>
   <div class="form">
+    <%= f.label :number, class: 'form-label' %><br>
+    <%= f.number_field :sort, class: 'form-control' %>
+  </div>
+  <div class="form">
     <%= f.label :preview, class: 'form-label' %><br>
     <%= f.file_field :preview, class: 'form-control' %>
   </div>
