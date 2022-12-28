@@ -24,12 +24,16 @@
                       <span class="input-group-text" id="basic-addon3" style="width: auto">Coins</span>
                       <%= form.text_field :coin, class: 'form-control' %>
                     </div>
-                    <div class="input-group mb-3">
-                      <% unless params[:genre] == "member_level" %>
-                      <span class="input-group-text" id="basic-addon3" style="width: auto">Remarks</span>
-                      <%= form.text_field :remarks, class: 'form-control' %>
-                      <% end %>
-                    </div>
+                    <span class="text-danger"><%= @order.errors.full_messages_for(:coin).join(", ") if @order.errors.has_key?(:coin) %></span>
+                    <hr>
+                    <% unless params[:genre] == "member_level" %>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3" style="width: auto">Remarks</span>
+                        <%= form.text_field :remarks, class: 'form-control' %>
+                      </div>
+                      <span class="text-danger"><%= @order.errors.full_messages_for(:remarks).join(", ") if @order.errors.has_key?(:remarks) %></span>
+                      <hr>
+                    <% end %>
                     <div class="input-group mb-3">
                       <%= form.submit "Order", class: 'btn btn-warning' %>
                       <%= link_to "Back", admins_users_path, class: 'btn btn-dark' %>

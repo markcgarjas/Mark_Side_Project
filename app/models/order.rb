@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   include AASM
-  validates :coin, presence: true, numericality: { greater_than: 1 }
+  validates :coin, presence: true, numericality: { greater_than: 0 }
   validates :remarks, presence: true, unless: [:member_level?, :deposit?]
   belongs_to :offer, optional: true
   belongs_to :user

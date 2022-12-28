@@ -1,8 +1,8 @@
 class Offer < ApplicationRecord
   validates :name, presence: true
   validates :image, presence: true
-  validates :coin, presence: true
-  validates :amount, presence: true
+  validates :coin, presence: true, numericality: { greater_than: 0 }
+  validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :genre, presence: true
   validates :status, presence: true
   has_many :orders

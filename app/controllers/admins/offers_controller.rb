@@ -17,8 +17,7 @@ class Admins::OffersController < AdminController
       flash[:notice] = "#{@offer.name.capitalize} successfully created"
       redirect_to admins_offers_path
     else
-      flash[:notice] = @offer.errors.full_messages.join(", ")
-      redirect_to new_admins_offer_path
+      render :new
     end
   end
 
@@ -30,8 +29,7 @@ class Admins::OffersController < AdminController
       flash[:notice] = "#{@offer.name.capitalize} successfully updated"
       redirect_to admins_offers_path
     else
-      flash[:notice] = @offer.errors.full_messages.join(", ")
-      redirect_to edit_admins_offer_path
+      render :edit
     end
   end
 

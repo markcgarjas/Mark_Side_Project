@@ -5,23 +5,33 @@
   </div>
   <hr>
   <div class="form">
-    <%= f.label :number, class: 'form-label' %><br>
+    <%= f.label :number, class: 'form-label' %>
     <%= f.number_field :sort, class: 'form-control' %>
+    <span class="text-danger"><%= banner.errors.full_messages_for(:sort).join(", ") if banner.errors.has_key?(:sort) %></span>
   </div>
+  <hr>
   <div class="form">
-    <%= f.label :preview, class: 'form-label' %><br>
+    <%= f.label :preview, class: 'form-label' %>
     <%= f.file_field :preview, class: 'form-control' %>
+    <span class="text-danger"><%= banner.errors.full_messages_for(:preview).join(", ") if banner.errors.has_key?(:preview) %></span>
   </div>
+  <hr>
   <div class="form">
-    <%= f.label :offline_at, class: 'form-label' %><br>
+    <%= f.label :offline_at, class: 'form-label' %>
     <%= f.date_field :offline_at, class: 'form-control' %>
+    <span class="text-danger"><%= banner.errors.full_messages_for(:offline_at).join(", ") if banner.errors.has_key?(:offline_at) %></span>
   </div>
+  <hr>
   <div class="form">
-    <%= f.label :online_at, class: 'form-label' %><br>
+    <%= f.label :online_at, class: 'form-label' %>
     <%= f.date_field :online_at, class: 'form-control' %>
+    <span class="text-danger"><%= banner.errors.full_messages_for(:online_at).join(", ") if banner.errors.has_key?(:online_at) %></span>
   </div>
+  <hr>
   <div class="form">
-    <%= f.label :status, class: 'form-label' %><br>
-    <%= f.select :status, options_for_select(Banner.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+    <%= f.label :status, class: 'form-label' %>
+    <%= f.select :status, options_for_select(Banner.statuses.map { |key, value| [key.humanize, key] }),
+                 { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+    <span class="text-danger"><%= banner.errors.full_messages_for(:status).join(", ") if banner.errors.has_key?(:status) %></span>
   </div>
 <% end %>

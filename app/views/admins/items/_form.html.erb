@@ -5,40 +5,56 @@
   </div>
   <hr>
   <div class="form-check-outline border">
-    <%= f.label :categories, class: 'fs-5'%><br>
-    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, class: 'form-check-input', for: 'defaultCheck1' %>
+    <%= f.label :categories, class: 'fs-5' %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, class: 'form-check-input d-flex', for: 'defaultCheck1' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:category_ids).join(", ") if item.errors.has_key?(:category_ids) %></span>
   </div>
   <hr>
   <div class="form">
-    <%= f.label :image, class: 'form-label' %><br>
+    <%= f.label :image, class: 'form-label' %>
     <%= f.file_field :image, class: 'form-control' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:image).join(", ") if item.errors.has_key?(:image) %></span>
+    <hr>
   </div>
   <div class="form">
-    <%= f.label :name, class: 'form-label' %><br>
+    <%= f.label :name, class: 'form-label' %>
     <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:name).join(", ") if item.errors.has_key?(:name) %></span>
+    <hr>
   </div>
   <div class="form">
-    <%= f.label :quantity, class: 'form-label' %><br>
+    <%= f.label :quantity, class: 'form-label' %>
     <%= f.number_field :quantity, class: 'form-control', placeholder: 'Quantity' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:quantity).join(", ") if item.errors.has_key?(:quantity) %></span>
+    <hr>
   </div>
   <div class="form">
-    <%= f.label :minimum_bets, class: 'form-label' %><br>
+    <%= f.label :minimum_bets, class: 'form-label' %>
     <%= f.number_field :minimum_bets, class: 'form-control', placeholder: 'Minimum Bets' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:minimum_bets).join(", ") if item.errors.has_key?(:minimum_bets) %></span>
+    <hr>
   </div>
   <div class="form">
-    <%= f.label :online_at, class: 'form-label' %><br>
+    <%= f.label :online_at, class: 'form-label' %>
     <%= f.date_field :online_at, class: 'form-control', placeholder: 'Minimum Bets' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:online_at).join(", ") if item.errors.has_key?(:online_at) %></span>
+    <hr>
   </div>
   <div class="form">
-    <%= f.label :offline_at, class: 'form-label' %><br>
+    <%= f.label :offline_at, class: 'form-label' %>
     <%= f.date_field :offline_at, class: 'form-control', placeholder: 'Minimum Bets' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:offline_at).join(", ") if item.errors.has_key?(:offline_at) %></span>
+    <hr>
   </div>
   <div class="form">
-    <%= f.label :start_at, class: 'form-label' %><br>
+    <%= f.label :start_at, class: 'form-label' %>
     <%= f.date_field :start_at, class: 'form-control', placeholder: 'Minimum Bets' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:online_at).join(", ") if item.errors.has_key?(:online_at) %></span>
+    <hr>
   </div>
   <div class="form">
-    <%= f.label :status, class: 'form-label' %><br>
+    <%= f.label :status, class: 'form-label' %>
     <%= f.select :status, options_for_select(Item.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+    <span class="text-danger"><%= item.errors.full_messages_for(:status).join(", ") if item.errors.has_key?(:status) %></span>
   </div>
 <% end %>

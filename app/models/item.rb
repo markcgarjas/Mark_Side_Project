@@ -3,12 +3,15 @@ class Item < ApplicationRecord
   default_scope { where(deleted_at: nil) }
 
   validates :image, presence: true
-  validates :name, presence: true
-  validates :minimum_bets, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :minimum_bets, presence: true, numericality: { greater_than: 0 }
   validates :online_at, presence: true
   validates :offline_at, presence: true
   validates :start_at, presence: true
   validates :status, presence: true
+  validates :category_ids, presence: true
+  validates :status, presence: true
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
   has_many :item_category_ships, dependent: :restrict_with_error
   has_many :categories, through: :item_category_ships
   has_many :bets

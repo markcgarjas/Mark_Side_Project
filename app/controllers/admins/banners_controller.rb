@@ -15,8 +15,7 @@ class Admins::BannersController < AdminController
       flash[:notice] = "Successfully Created"
       redirect_to admins_banners_path
     else
-      flash[:notice] = @banner.errors.full_messages.join(", ")
-      redirect_to new_admins_banner_path
+      render :new
     end
   end
 
@@ -28,8 +27,7 @@ class Admins::BannersController < AdminController
       flash[:notice] = "Successfully Updated"
       redirect_to admins_banners_path
     else
-      flash[:notice] = @banner.errors.full_messages.join(", ")
-      redirect_to new_admins_banner_path
+      render :edit
     end
   end
 

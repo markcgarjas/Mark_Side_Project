@@ -7,13 +7,20 @@
   <div class="form">
     <%= f.label :number, class: 'form-label' %><br>
     <%= f.number_field :sort, class: 'form-control' %>
+    <span class="text-danger"><%= news_ticker.errors.full_messages_for(:sort).join(", ") if news_ticker.errors.has_key?(:sort) %></span>
+    <hr>
   </div>
   <div class="form">
     <%= f.label :content, class: 'form-label' %><br>
     <%= f.text_field :content, class: 'form-control' %>
+    <span class="text-danger"><%= news_ticker.errors.full_messages_for(:content).join(", ") if news_ticker.errors.has_key?(:content) %></span>
+    <hr>
   </div>
   <div class="form">
     <%= f.label :status, class: 'form-label' %><br>
-    <%= f.select :status, options_for_select(NewsTicker.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+    <%= f.select :status, options_for_select(NewsTicker.statuses.map { |key, value| [key.humanize, key] }),
+                 { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+    <span class="text-danger"><%= news_ticker.errors.full_messages_for(:status).join(", ") if news_ticker.errors.has_key?(:status) %></span>
+    <hr>
   </div>
 <% end %>

@@ -11,13 +11,11 @@ class Admins::MemberLevelsController < AdminController
 
   def create
     @member_level = MemberLevel.new(member_level_params)
-    # @member_level.user = User.first
     if @member_level.save
       flash[:notice] = "Successfully Created"
       redirect_to admins_member_levels_path
     else
-      flash[:notice] = @member_level.errors.full_messages.join(", ")
-      redirect_to new_admins_member_level_path
+      render :new
     end
   end
 
@@ -29,8 +27,7 @@ class Admins::MemberLevelsController < AdminController
       flash[:notice] = "Successfully Updated"
       redirect_to admins_member_levels_path
     else
-      flash[:notice] = @member_level.errors.full_messages.join(", ")
-      redirect_to edit_admins_member_level_path
+      render :edit
     end
   end
 

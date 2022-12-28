@@ -16,8 +16,7 @@ class Admins::NewsTickersController < AdminController
       flash[:notice] = "Successfully Created"
       redirect_to admins_news_tickers_path
     else
-      flash[:notice] = @news_ticker.errors.full_messages.join(", ")
-      redirect_to new_admins_news_ticker_path
+      render :new
     end
   end
 

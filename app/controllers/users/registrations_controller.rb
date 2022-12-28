@@ -49,8 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = t("update_successfully")
       redirect_to users_profile_path
     else
-      flash[:alert] = @user.errors.full_messages.join(", ")
-      redirect_to edit_user_registration_path
+      render :edit
     end
   end
 
@@ -59,8 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = t("update_successfully")
       redirect_to users_profile_path
     else
-      flash[:alert] = @user.errors.full_messages.join(", ")
-      redirect_to edit_user_registration_path
+      render :edit
     end
   end
 

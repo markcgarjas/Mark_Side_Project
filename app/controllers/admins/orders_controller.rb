@@ -58,12 +58,11 @@ class Admins::OrdersController < AdminController
         redirect_to admins_user_new_path
       else
         @order.cancel!
-        flash[:notice] = @order.errors.full_messages.join(", ")
-        redirect_to admins_user_new_path
+        flash[:notice] = "You can't deduct user coins"
+          render :new
       end
     else
-      flash[:alert] = @order.errors.full_messages.join(", ")
-      redirect_to admins_user_new_path
+      render :new
     end
   end
 

@@ -1,27 +1,41 @@
-<%= form_with model: @offer, url: path do |f| %>
+<%= form_with model: offer, url: path do |f| %>
   <div class="form">
     <%= f.label :image, class: "form-label" %>
     <%= f.file_field :image, class: "form-control" %>
+    <span class="text-danger"><%= offer.errors.full_messages_for(:image).join(", ") if offer.errors.has_key?(:image) %></span>
+    <hr>
   </div>
   <div class="form">
     <%= f.label :name, class: "form-label" %>
     <%= f.text_field :name, class: "form-control" %>
+    <span class="text-danger"><%= offer.errors.full_messages_for(:name).join(", ") if offer.errors.has_key?(:name) %></span>
+    <hr>
   </div>
   <div class="form">
     <%= f.label :genre, class: 'form-label' %><br>
-    <%= f.select :genre, options_for_select(Offer.genres.map { |key, value| [key.humanize, key] }), { prompt: "Select Genre" }, class: 'form-control mt-1 mb-1' %>
+    <%= f.select :genre, options_for_select(Offer.genres.map { |key, value| [key.humanize, key] }),
+                 { prompt: "Select Genre" }, class: 'form-control mt-1 mb-1' %>
+    <span class="text-danger"><%= offer.errors.full_messages_for(:genre).join(", ") if offer.errors.has_key?(:genre) %></span>
+    <hr>
   </div>
   <div class="form">
     <%= f.label :status, class: 'form-label' %><br>
-    <%= f.select :status, options_for_select(Offer.statuses.map { |key, value| [key.humanize, key] }), { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+    <%= f.select :status, options_for_select(Offer.statuses.map { |key, value| [key.humanize, key] }),
+                 { prompt: "Select Status" }, class: 'form-control mt-1 mb-1' %>
+    <span class="text-danger"><%= offer.errors.full_messages_for(:status).join(", ") if offer.errors.has_key?(:status) %></span>
+    <hr>
   </div>
   <div class="form">
     <%= f.label :amount, class: 'form-label' %><br>
     <%= f.number_field :amount, class: 'form-control mt-1 mb-1' %>
+    <span class="text-danger"><%= offer.errors.full_messages_for(:amount).join(", ") if offer.errors.has_key?(:amount) %></span>
+    <hr>
   </div>
   <div class="form">
     <%= f.label :coin, class: 'form-label' %><br>
     <%= f.number_field :coin, class: 'form-control mt-1 mb-1' %>
+    <span class="text-danger"><%= offer.errors.full_messages_for(:coin).join(", ") if offer.errors.has_key?(:coin) %></span>
+    <hr>
   </div>
   <div class="my-2">
     <%= f.submit class: 'btn btn-warning' %>

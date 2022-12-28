@@ -18,8 +18,7 @@ class Users::AddressesController < ApplicationController
       flash[:notice] = t("create_successfully")
       redirect_to users_profile_addresses_path
     else
-      flash[:alert] = @address.errors.full_messages.join(", ")
-      redirect_to new_users_profile_address_path
+      render :new
     end
   end
 
@@ -32,8 +31,7 @@ class Users::AddressesController < ApplicationController
       flash[:notice] = t("update_successfully")
       redirect_to users_profile_addresses_path
     else
-      flash[:alert] = @address.errors.full_messages.join(", ")
-      redirect_to new_users_profile_address_path
+      render :edit
     end
   end
 

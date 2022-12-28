@@ -48,8 +48,7 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "Create Successfully"
       redirect_to admins_items_path
     else
-      flash[:notice] = @item.errors.full_messages.join(", ")
-      redirect_to new_admins_item_path
+      render :new
     end
   end
 
@@ -63,8 +62,7 @@ class Admins::ItemsController < AdminController
       flash[:notice] = "Update Successfully"
       redirect_to admins_items_path
     else
-      flash[:notice] = @item.errors.full_messages.join(", ")
-      redirect_to edit_admins_item_path
+      render :edit
     end
   end
 

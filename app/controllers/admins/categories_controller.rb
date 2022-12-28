@@ -15,8 +15,7 @@ class Admins::CategoriesController < AdminController
       flash[:notice] = "Create Successfully"
       redirect_to admins_categories_path
     else
-      flash[:notice] = @category.errors.full_messages.join(", ")
-      redirect_to new_admins_category_path
+      render :new
     end
   end
 
@@ -27,8 +26,7 @@ class Admins::CategoriesController < AdminController
       flash[:notice] = "Update Successfully"
       redirect_to admins_categories_path
     else
-      flash[:notice] = @category.errors.full_messages.join(", ")
-      redirect_to edit_admins_category_path
+      render :edit
     end
   end
 

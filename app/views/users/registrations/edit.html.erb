@@ -14,36 +14,43 @@
                     <strong><%= f.label t("profile_update"), class: 'mb-3' %>
                       <%= f.file_field :image, class: 'form-control' %></strong>
                   </div>
+                  <span class="text-danger"><%= resource.errors.full_messages_for(:image).join(", ") if resource.errors.has_key?(:image) %></span>
+                  <hr>
                   <div class="form-floating mt-3">
                     <%= f.text_field :username, class: "form-control", id: "floatingInput", placeholder: "Username" %>
-                    <br/>
                     <%= f.label :username, for: "floatingInput" %>
+                    <span class="text-danger"><%= resource.errors.full_messages_for(:username).join(", ") if resource.errors.has_key?(:username) %></span>
+                    <hr>
                   </div>
                   <div class="form-floating mt-3">
                     <%= f.text_field :phone, class: "form-control", id: "floatingInput", placeholder: "+639....", maxlength: 13 %>
-                    <br/>
+
                     <%= f.label :phone, for: "floatingInput" %>
+                    <span class="text-danger"><%= resource.errors.full_messages_for(:phone).join(", ") if resource.errors.has_key?(:phone) %></span>
                   </div>
                 </div>
                 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
                 <% end %>
                 <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 border">
-                  <div class="form-floating text-center">
-                    <strong><%= f.label t("change_password"), class: 'mb-3' %></strong>
+                  <div class="form-floating">
+                    <strong class="text-center"><%= f.label t("change_password"), class: 'mb-3' %></strong>
                     <div class="form-floating">
                       <%= f.password_field :current_password, id: "floatingInput", class: 'form-control', placeholder: 'Current Password' %>
-                      <br/>
                       <%= f.label "Current_password (We need your current password to confirm your changes)", for: "floatingInput" %>
+                      <span class="text-danger"><%= resource.errors.full_messages_for(:current_password).join(", ") if resource.errors.has_key?(:current_password) %></span>
+                      <hr>
                     </div>
                     <div class="form-floating mt-3">
                       <%= f.password_field :password, class: 'form-control', id: "floatingInput", placeholder: "New Password" %>
-                      <br>
                       <%= f.label "New Password (Minimum of 6 characters minimum}" %>
+                      <span class="text-danger"><%= resource.errors.full_messages_for(:password).join(", ") if resource.errors.has_key?(:password) %></span>
+                      <hr>
                     </div>
                     <div class="form-floating mt-3">
                       <%= f.password_field :password_confirmation, class: 'form-control', id: "floatingInput", placeholder: "Password Confirmation" %>
-                      <%= f.label "New Password Confirmation" %><br/>
+                      <%= f.label "New Password Confirmation" %>
+                      <span class="text-danger"><%= resource.errors.full_messages_for(:password_confirmation).join(", ") if resource.errors.has_key?(:password_confirmation) %></span>
                     </div>
                   </div>
                 </div>

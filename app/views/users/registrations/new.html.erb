@@ -17,7 +17,7 @@
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <div class="form-floating mt-3">
                 <% if cookies[:promoter].present? %>
-                  <%= f.email_field :parent, class: "form-control", id: "floatingInput", placeholder: "name@example.com", value: cookies[:promoter], readonly: true %>
+                  <%= email_field_tag :parent, cookies[:promoter], class: "form-control", id: "floatingInput", placeholder: "name@example.com", readonly: true %>
                   <br>
                   <%= f.label :Promoter, for: "floatingInput" %>
                 <% end %>

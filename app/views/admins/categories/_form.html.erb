@@ -5,9 +5,14 @@
   </div>
   <hr>
   <div class="form">
-    <%= form.label :number, class: 'form-label' %><br>
+    <%= form.label :number, class: 'form-label' %>
     <%= form.number_field :sort, class: 'form-control' %>
+    <span class="text-danger"><%= category.errors.full_messages_for(:sort).join(", ") if category.errors.has_key?(:sort) %></span>
   </div>
-  <%= form.label :name, class: 'form-label' %><br>
-  <%= form.text_field :name, class: 'form-control' %><br>
+  <hr>
+  <div class="form">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
+    <span class="text-danger"><%= category.errors.full_messages_for(:name).join(", ") if category.errors.has_key?(:name) %></span>
+  </div>
 <% end %>
