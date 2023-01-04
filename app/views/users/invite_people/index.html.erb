@@ -25,12 +25,12 @@
               </div>
               <div class="card mt-1">
                 <div class="card-body text-center">
-                  <p><%= "You have #{@invited_members} invite/s" %></p>
                   <% unless @next_level.nil? %>
+                    <p><%= "You have #{@invited_members} invite/s" if user_signed_in? %></p>
                     <p><%= "Share to #{@member_needs} friends" %><br>
                       and get<br><%= "#{@coins} coin/s" %></p>
                   <% end %>
-                  <% if @next_level.nil? %>
+                  <% if @next_level.nil? && user_signed_in? %>
                     <p>You are already at the max level!</p>
                   <% end %>
                 </div>

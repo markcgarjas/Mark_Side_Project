@@ -5,8 +5,10 @@ class Users::InvitePeopleController < ApplicationController
 
   def index
     @member_levels = MemberLevel.all
-    @invited_members = current_user.children_members
-    @next_level = MemberLevel.where("required_members > ? ", current_user.children_members).first
+    if user_signed_in?
+      @invited_members = current_user.children_members
+    end
+    @next_level = MemberLevel.where("required_members > ? ", @invited_members).first
     unless @next_level.nil?
       @member_needs = @next_level.required_members - @invited_members
       @coins = MemberLevel.where("required_members > ? ", current_user.children_members).first.coins
