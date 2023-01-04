@@ -31,13 +31,14 @@ class Users::LotteryController < ApplicationController
       @bet.item = @item
       @bet.user = current_user
       @bet.batch_count = @item.batch_count
-      @bet.save!
+      if @bet.save
+        flash[:notice] = t("create_successfully")
+        redirect_to users_lottery_index_path
+      else
+        flash[:alert] = @bet.errors.full_messages.join(", ")
+        redirect_to users_shop_index_path
+      end
     }
-    flash[:notice] = t("create_successfully")
-    redirect_to users_lottery_index_path
-  rescue ActiveRecord::RecordInvalid => invalid
-    flash[:alert] = invalid
-    redirect_to users_shop_index_path
   end
 
   private
