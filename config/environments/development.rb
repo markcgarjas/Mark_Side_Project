@@ -66,6 +66,7 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
   config.hosts << "client.com"
   config.hosts << "admin.com"
+  config.hosts << "a3f6-175-176-37-136.ap.ngrok.io"
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end

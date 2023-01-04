@@ -8,13 +8,18 @@ gem "rails", "~> 7.0.4"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-gem "devise"
+gem 'devise'
 gem 'phonelib'
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'rest-client'
 gem 'active_model_serializers'
 gem "rqrcode", "~> 2.0"
 gem 'aasm'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+gem 'activerecord-session_store'
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
 
